@@ -3,9 +3,9 @@ WORKDIR /app
 RUN npm install -g npm@9
 COPY package*.json .
 COPY themes .
-COPY extensions .
-COPY public .
-COPY media .
+# COPY extensions .
+# COPY public .
+# COPY media .
 COPY config .
 COPY translations .
 RUN npm install
