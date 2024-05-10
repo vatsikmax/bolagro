@@ -1,0 +1,7 @@
+{
+  "shop" : {
+        "currency": "UAH",
+        "language": "ua",
+        "weightUnit": "kg"
+    }
+}

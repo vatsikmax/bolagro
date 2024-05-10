@@ -14,7 +14,7 @@ npm-debug.log
 .log
 coverage
 cypress
-/config
+# /config
 .prettierignore
 .prettierrc
 mysqlToPostgres.js
