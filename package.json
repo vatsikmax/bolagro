@@ -1,0 +1,22 @@
+{
+  "name": "bolagro",
+  "private": true,
+  "description": "bolagro e-commerce store",
+  "workspaces": {
+    "packages": [
+      "frontend",
+      "backend"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vatsikmax/bolagro.git"
+  },
+  "packageManager": "yarn@4.6.0",
+  "lint-staged": {
+    "*.{ts}": [
+      "prettier --write",
+      "eslint --fix --cache"
+    ]
+  }
+}
