@@ -24,6 +24,7 @@ export async function importToPromByFile(filePath: string): Promise<void> {
   } catch (error: any) {
     console.error('Помилка імпорту файлу:', error.response ? error.response.data : error.message);
     console.log('Будь ласка зайдіть на prom.ua і скасуйте імпорт якщо необхідно')
+    throw error;
   }
 }
 

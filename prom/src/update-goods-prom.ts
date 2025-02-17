@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import 'dotenv/config';
 import { readTorgsoftProducts } from './torgsoft/read-export-file';
 import { writeToImportFile } from './prom/file-helper';
 import { importToPromByFile } from './prom/api';
@@ -149,9 +150,22 @@ async function main() {
   });
   console.log(`Всього продуктів: ${torgsoftProducts.length}, продуктів буде імпортовано: ${filteredProducts.length}`);
 
+  if (filteredProducts.length === 0) {
+    console.log('Немає продуктів для імпорту, ймовірно сталась помилка, імпорт не буде виконано');
+    await waitForKeypress();
+    process.exit(1);
+
+  }
   const promImportProducts = filteredProducts.map(tp => {
     return mapToPromImportProduct(tp);
   });
+
+  console.log('Товари з фото: ', promImportProducts.filter(p => p[COLUMNS.LINK_TO_IMAGE.prom]).length, "без фото:", promImportProducts.filter(p => !p[COLUMNS.LINK_TO_IMAGE.prom]).length);
+  console.log('Товари з описом: ', promImportProducts.filter(p => p[COLUMNS.DESCRIPTIONS.prom]).length, "без опису:", promImportProducts.filter(p => !p[COLUMNS.DESCRIPTIONS.prom]).length);
+  console.log('Товари з фото і описом: ', promImportProducts.filter(p => p[COLUMNS.LINK_TO_IMAGE.prom] && p[COLUMNS.DESCRIPTIONS.prom]).length);
+  console.log('Товари без фото і без опису: ', promImportProducts.filter(p => !p[COLUMNS.LINK_TO_IMAGE.prom] && !p[COLUMNS.DESCRIPTIONS.prom]).length);
+  console.log('Товари без фото але з описом: ', promImportProducts.filter(p => !p[COLUMNS.LINK_TO_IMAGE.prom] && p[COLUMNS.DESCRIPTIONS.prom]).length);
+  console.log('Товари з фото але без опису: ', promImportProducts.filter(p => p[COLUMNS.LINK_TO_IMAGE.prom] && !p[COLUMNS.DESCRIPTIONS.prom]).length);
 
   // Create 'uploads' folder if it doesn't exist
   const uploadsDir = path.join(execDir, 'uploads');
