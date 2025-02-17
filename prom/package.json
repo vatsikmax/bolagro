@@ -1,0 +1,29 @@
+{
+  "name": "prom.ua",
+  "version": "1.0.0",
+  "main": "dist/update-goods-prom.js",
+  "bin": "dist/update-goods-prom.js",
+  "scripts": {
+    "build": "rimraf dist && npx tsc",
+    "start": "node update-goods-prom.js",
+    "pkg": "yarn build && pkg ."
+  },
+  "pkg": {
+    "scripts": "dist/update-goods-prom.js",
+    "targets": [
+      "node18-win-x64"
+    ]
+  },
+  "dependencies": {
+    "@types/node": "^18.13.4",
+    "axios": "^0.21.1",
+    "form-data": "^4.0.0",
+    "sync-request": "^6.1.0",
+    "typescript": "^5.7.3",
+    "xlsx": "^0.17.0"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1",
+    "rimraf": "^6.0.1"
+  }
+}
