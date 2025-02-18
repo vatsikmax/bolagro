@@ -20,7 +20,6 @@ RUN chown -R node:node /app/
 # node user has no privilege, so it runs the Application
 USER node
 
-
 EXPOSE 8080
 
-CMD ["sh", "-c", "yarn build && yarn seed && yarn start"]
+CMD ["sh", "-c", "yarn build && yarn migrate && yarn seed && yarn start"]

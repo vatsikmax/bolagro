@@ -17,10 +17,11 @@ services:
       REDIS_URL: redis://redis:6379
       ADMIN_MAIL: vatsik@i.ua
       ADMIN_PWD: vatsik
+      NODE_ENV: development
     ports:
       - '9000:9000'
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:9000/ping']
+      test: ['CMD', 'curl', '-f', 'http://localhost:9000/token']
       interval: 10s
       timeout: 5s
       retries: 10
@@ -36,7 +37,7 @@ services:
   #   environment:
   #     NEXT_PUBLIC_MEDUSA_BACKEND_URL: http://backend:9000
   #     NEXT_PUBLIC_BASE_URL: http://localhost:8000
-  #     NEXT_PUBLIC_DEFAULT_REGION: dk
+  #     NEXT_PUBLIC_DEFAULT_REGION: ua
   #     REVALIDATE_SECRET: supersecret
   #   depends_on:
   #     backend:
