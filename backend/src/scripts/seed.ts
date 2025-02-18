@@ -356,11 +356,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -374,11 +370,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -392,11 +384,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -410,11 +398,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -428,11 +412,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -446,11 +426,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -464,11 +440,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -482,11 +454,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -532,11 +500,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -549,11 +513,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -566,11 +526,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -583,11 +539,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -633,11 +585,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -650,11 +598,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -667,11 +611,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -684,11 +624,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -734,11 +670,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -751,11 +683,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -768,11 +696,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },
@@ -785,11 +709,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
               prices: [
                 {
                   amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  currency_code: "uah",
                 },
               ],
             },

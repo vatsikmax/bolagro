@@ -1,0 +1,25 @@
+name: 'Wait for Application to Be Ready'
+description: 'Ping health-check endpoint until it returns 200 OK'
+
+inputs:
+  host:
+    description: 'The host to check for application readiness'
+    required: true
+    default: 'http://localhost:8000'
+  timeout:
+    description: 'The maximum time to wait for the application to be ready (in seconds)'
+    required: true
+    default: '120'
+  interval:
+    description: 'The interval between checks (in seconds)'
+    required: true
+    default: '5'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Wait for Application to Be Ready
+      shell: bash
+      run: |
+        chmod +x "$GITHUB_ACTION_PATH/ping.sh"
+        bash "$GITHUB_ACTION_PATH/ping.sh" "${{ inputs.host }}" "${{ inputs.timeout }}" "${{ inputs.interval }}"

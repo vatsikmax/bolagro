@@ -1,0 +1,38 @@
+name: pull-request
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, labeled]
+
+env:
+  NODE_ENV: development
+
+concurrency:
+  group: pr-${{ github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  start-app-check:
+    name: 💡 Start App & 🎭 Run E2E Tests
+    runs-on: nodejs-22-medium
+    steps:
+      - name: ⛙ Checkout
+        uses: actions/checkout@v4
+
+      - name: Start Application
+        run: docker-compose up -d
+
+      - name: Wait for Application to Be Ready
+        uses: ./.github/actions/wait-app-to-be-ready
+
+      - name: ℹ️ Capture Docker Containers Logs
+        if: failure()
+        run: docker-compose logs --no-color
+
+      - name: Stop Application
+        if: always()
+        run: docker-compose down
