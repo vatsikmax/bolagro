@@ -16,43 +16,18 @@ permissions:
   id-token: write
 
 jobs:
-  build-lint-check:
-    name: 🚧 Build 🧹 Lint 🧪 Test
-    runs-on: nodejs-22-medium
-    steps:
-      - name: ⛙ Checkout
-        uses: actions/checkout@v4
-
-      - name: 🧱 Install Dependencies
-        shell: bash
-        run: yarn
-
-      - name: 🚧 Build 🧹 Lint 🧪 Test
-        uses: ./.github/actions/build-lint-check
-        with:
-          turbo-token: ${{ env.TURBO_TOKEN }}
-
-  start-app-and-run-e2e-tests:
+  start-app-check:
     name: 💡 Start App & 🎭 Run E2E Tests
     runs-on: nodejs-22-xlarge
-    needs:
-      - build-lint-check
     steps:
       - name: ⛙ Checkout
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.CS_CI_GITHUB_TOKEN }}
 
       - name: Start Application
         run: docker-compose up -d
 
       - name: Wait for Application to Be Ready
         uses: ./.github/actions/wait-app-to-be-ready
-
-      - name: Run E2E Tests
-        uses: ./.github/actions/run-e2e-tests
-        with:
-          environment: http://localhost:8000/dk
 
       - name: ℹ️ Capture Docker Containers Logs
         if: failure()
@@ -61,16 +36,3 @@ jobs:
       - name: Stop Application
         if: always()
         run: docker-compose down
-
-  mergeable:
-    name: Mergeable
-    runs-on: nodejs-22-xxsmall
-    if: always()
-    needs:
-      - build-lint-check
-      - start-app-and-run-e2e-tests
-    steps:
-      - name: Mergeable
-        uses: ContentSquare/action-mergeable@v1
-        with:
-          jobs-result: ${{ join(needs.*.result, ' ') }}

@@ -9,11 +9,6 @@
       "prom"
     ]
   },
-  "scripts": {
-    "lint": "yarn workspaces lint",
-    "test": "yarn workspaces run test",
-    "build": "yarn workspaces run build"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vatsikmax/bolagro.git"
