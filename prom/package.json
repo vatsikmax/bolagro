@@ -5,7 +5,7 @@
   "bin": "dist/update-goods-prom.js",
   "scripts": {
     "build": "rimraf dist && npx tsc",
-    "start": "node update-goods-prom.js",
+    "update": "yarn build && node dist/update-goods-prom.js",
     "pkg": "yarn build && pkg ."
   },
   "pkg": {
