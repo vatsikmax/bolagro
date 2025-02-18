@@ -1,37 +1,37 @@
 services:
-  # backend:
-  #   build:
-  #     context: ./
-  #     dockerfile: ./apps/backend/Dockerfile
-  #   image: qt-store-backend:latest
-  #   container_name: medusa-backend
-  #   restart: always
-  #   depends_on:
-  #     - postgres
-  #     - redis
-  #   environment:
-  #     DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa?sslmode=disable
-  #     STORE_CORS: http://localhost:8000
-  #     ADMIN_CORS: http://localhost:9000
-  #     BACKEND_URL: http://localhost:9000
-  #     REDIS_URL: redis://redis:6379
-  #     ADMIN_MAIL: qt@contentsquare.com
-  #     ADMIN_PWD: qt
-  #   ports:
-  #     - '9000:9000'
-  #   healthcheck:
-  #     test: ['CMD', 'curl', '-f', 'http://localhost:9000/ping']
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 10
-  #     start_period: 30s
+  backend:
+    build:
+      context: ./
+      dockerfile: ./backend/Dockerfile
+    image: bolagro-store:latest
+    container_name: bolagro-backend
+    restart: always
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/bolagro?sslmode=disable
+      STORE_CORS: http://localhost:8000
+      ADMIN_CORS: http://localhost:9000
+      BACKEND_URL: http://localhost:9000
+      REDIS_URL: redis://redis:6379
+      ADMIN_MAIL: vatsik@i.ua
+      ADMIN_PWD: vatsik
+    ports:
+      - '9000:9000'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:9000/ping']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   # frontend:
   #   build:
   #     context: ./
-  #     dockerfile: ./apps/frontend/Dockerfile
-  #   image: qt-store-frontend:latest
-  #   container_name: medusa-frontend
+  #     dockerfile: ./frontend/Dockerfile
+  #   image: bolagro-store-frontend:latest
+  #   container_name: bolagro-frontend
   #   restart: always
   #   environment:
   #     NEXT_PUBLIC_MEDUSA_BACKEND_URL: http://backend:9000

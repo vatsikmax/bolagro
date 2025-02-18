@@ -16,3 +16,5 @@
 request.http
 
 /node_modules
+
+.docker/**
