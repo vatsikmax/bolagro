@@ -17,7 +17,7 @@ declare global {
 }
 
 // Get the directory of the executable
-const execDir = process.pkg ? path.dirname(process.execPath) : __dirname;
+const execDir = process.pkg ? path.dirname(process.execPath) : process.cwd();
 // Create a writable stream for the log file
 const logFile = fs.createWriteStream(path.join(execDir, 'logs'), { flags: 'a' });
 
