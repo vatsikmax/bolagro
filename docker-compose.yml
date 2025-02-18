@@ -3,8 +3,8 @@ services:
     build:
       context: ./
       dockerfile: ./backend/Dockerfile
-    image: bolagro-store:latest
-    container_name: bolagro-backend
+    image: bolagro-store-backend:latest
+    container_name: backend
     restart: always
     depends_on:
       - postgres
@@ -21,29 +21,29 @@ services:
     ports:
       - '9000:9000'
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:9000/token']
+      test: ['CMD', 'curl', '-f', 'http://localhost:9000/ping']
       interval: 10s
       timeout: 5s
       retries: 10
       start_period: 30s
 
-  # frontend:
-  #   build:
-  #     context: ./
-  #     dockerfile: ./frontend/Dockerfile
-  #   image: bolagro-store-frontend:latest
-  #   container_name: bolagro-frontend
-  #   restart: always
-  #   environment:
-  #     NEXT_PUBLIC_MEDUSA_BACKEND_URL: http://backend:9000
-  #     NEXT_PUBLIC_BASE_URL: http://localhost:8000
-  #     NEXT_PUBLIC_DEFAULT_REGION: ua
-  #     REVALIDATE_SECRET: supersecret
-  #   depends_on:
-  #     backend:
-  #       condition: service_healthy
-  #   ports:
-  #     - '8000:8000'
+  frontend:
+    build:
+      context: ./
+      dockerfile: ./frontend/Dockerfile
+    image: bolagro-store-frontend:latest
+    container_name: frontend
+    restart: always
+    environment:
+      MEDUSA_BACKEND_URL: http://backend:9000
+      NEXT_PUBLIC_BASE_URL: http://localhost:8000
+      NEXT_PUBLIC_DEFAULT_REGION: ua
+      REVALIDATE_SECRET: supersecret
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - '8000:8000'
 
   postgres:
     restart: always
