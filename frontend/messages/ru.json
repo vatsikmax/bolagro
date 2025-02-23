@@ -1,0 +1,39 @@
+{
+  "Nav": {
+    "name": "Магазин садоводства Болагро",
+    "account": "Аккаунт",
+    "cart": "Корзина (0)"
+  },
+  "SideMenu": {
+    "menu": "Меню",
+    "Home": "Главная",
+    "Store": "Магазин",
+    "Account": "Аккаунт",
+    "Cart": "Корзина"
+  },
+  "Store": {
+    "allProducts": "Все товары"
+  },
+  "CartDropdown": {
+    "quantity": "Количество",
+    "remove": "Удалить",
+    "subtotal": "Итого",
+    "goToCart": "Перейти в корзину",
+    "empty": "Ваша корзина пуста.",
+    "goToAllProducts": "Перейти на страницу всех товаров",
+    "exploreProducts": "Исследовать товары",
+    "cart": "Корзина"
+  },
+  "Summary": {
+    "summary": "Итог",
+    "goToCheckout": "Перейти к оплате"
+  },
+  "CartTotals": {
+    "subtotal": "Итого",
+    "discount": "Скидка",
+    "shipping": "Доставка",
+    "giftCard": "Подарочная карта",
+    "taxes": "Налоги",
+    "total": "Всего"
+  }
+}

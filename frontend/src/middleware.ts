@@ -106,9 +106,17 @@ async function getCountryCode(
  * Middleware to handle region selection and onboarding status.
  */
 export async function middleware(request: NextRequest) {
-  let redirectUrl = request.nextUrl.href
+  const { pathname, search, href } = request.nextUrl;
+  const cookies = request.cookies;
+
+  // Check if language is stored in a cookie
+  let lang = cookies.get("NEXT_LOCALE")?.value || "ua";
+
+
+  let redirectUrl = href
 
   let response = NextResponse.redirect(redirectUrl, 307)
+  response.headers.set("x-language", lang);
 
   let cacheIdCookie = request.cookies.get("_medusa_cache_id")
 
@@ -119,11 +127,13 @@ export async function middleware(request: NextRequest) {
   const countryCode = regionMap && (await getCountryCode(request, regionMap))
 
   const urlHasCountryCode =
-    countryCode && request.nextUrl.pathname.split("/")[1].includes(countryCode)
+    countryCode && pathname.split("/")[1].includes(countryCode)
 
   // if one of the country codes is in the url and the cache id is set, return next
   if (urlHasCountryCode && cacheIdCookie) {
-    return NextResponse.next()
+    const response = NextResponse.next()
+    response.headers.set("x-language", lang);
+    return response
   }
 
   // if one of the country codes is in the url and the cache id is not set, set the cache id and redirect
@@ -136,14 +146,16 @@ export async function middleware(request: NextRequest) {
   }
 
   // check if the url is a static asset
-  if (request.nextUrl.pathname.includes(".")) {
-    return NextResponse.next()
+  if (pathname.includes(".")) {
+    const response = NextResponse.next()
+    response.headers.set("x-language", lang);
+    return response
   }
 
   const redirectPath =
-    request.nextUrl.pathname === "/" ? "" : request.nextUrl.pathname
+    pathname === "/" ? "" : pathname
 
-  const queryString = request.nextUrl.search ? request.nextUrl.search : ""
+  const queryString = search ? search : ""
 
   // If no country code is set, we redirect to the relevant region.
   if (!urlHasCountryCode && countryCode) {
