@@ -22,7 +22,7 @@ const CartTemplate = ({
             <div className="flex flex-col bg-white py-6 gap-y-6">
               {!customer && (
                 <>
-                  <SignInPrompt />
+                  <SignInPrompt dict={dict} />
                   <Divider />
                 </>
               )}
@@ -42,7 +42,7 @@ const CartTemplate = ({
           </div>
         ) : (
           <div>
-            <EmptyCartMessage />
+            <EmptyCartMessage dict={dict} />
           </div>
         )}
       </div>

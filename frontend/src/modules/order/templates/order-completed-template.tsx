@@ -1,5 +1,5 @@
 import { Heading } from "@medusajs/ui"
-import { cookies as nextCookies } from "next/headers"
+import { headers, cookies as nextCookies } from "next/headers"
 
 import CartTotals from "@modules/common/components/cart-totals"
 import Help from "@modules/order/components/help"
@@ -9,6 +9,7 @@ import OrderDetails from "@modules/order/components/order-details"
 import ShippingDetails from "@modules/order/components/shipping-details"
 import PaymentDetails from "@modules/order/components/payment-details"
 import { HttpTypes } from "@medusajs/types"
+import { getDictionary } from "@lib/dictionary"
 
 type OrderCompletedTemplateProps = {
   order: HttpTypes.StoreOrder
@@ -18,6 +19,9 @@ export default async function OrderCompletedTemplate({
   order,
 }: OrderCompletedTemplateProps) {
   const cookies = await nextCookies()
+  const headersList = await headers()
+  const lang = headersList.get("x-language") || "ua" // Get language from middleware
+  const dict = await getDictionary(lang as any)
 
   const isOnboarding = cookies.get("_medusa_onboarding")?.value === "true"
 
@@ -41,7 +45,7 @@ export default async function OrderCompletedTemplate({
             Summary
           </Heading>
           <Items order={order} />
-          <CartTotals totals={order} />
+          <CartTotals totals={order} dict={dict} />
           <ShippingDetails order={order} />
           <PaymentDetails order={order} />
           <Help />

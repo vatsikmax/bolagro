@@ -7,9 +7,20 @@ import { useActionState } from "react"
 
 type Props = {
   setCurrentView: (view: LOGIN_VIEW) => void
+  dict: {
+    Login: {
+      welcomeBack: string
+      signInToAccessShopping: string
+      signIn: string
+      notAMember: string
+      joinUs: string
+      email: string
+      password: string
+    }
+  }
 }
 
-const Login = ({ setCurrentView }: Props) => {
+const Login = ({ setCurrentView, dict }: Props) => {
   const [message, formAction] = useActionState(login, null)
 
   return (
@@ -17,14 +28,16 @@ const Login = ({ setCurrentView }: Props) => {
       className="max-w-sm w-full flex flex-col items-center"
       data-testid="login-page"
     >
-      <h1 className="text-large-semi uppercase mb-6">Welcome back</h1>
+      <h1 className="text-large-semi uppercase mb-6">
+        {dict.Login.welcomeBack}
+      </h1>
       <p className="text-center text-base-regular text-ui-fg-base mb-8">
-        Sign in to access an enhanced shopping experience.
+        {dict.Login.signInToAccessShopping}
       </p>
       <form className="w-full" action={formAction}>
         <div className="flex flex-col w-full gap-y-2">
           <Input
-            label="Email"
+            label={dict.Login.email}
             name="email"
             type="email"
             title="Enter a valid email address."
@@ -33,7 +46,7 @@ const Login = ({ setCurrentView }: Props) => {
             data-testid="email-input"
           />
           <Input
-            label="Password"
+            label={dict.Login.password}
             name="password"
             type="password"
             autoComplete="current-password"
@@ -43,17 +56,17 @@ const Login = ({ setCurrentView }: Props) => {
         </div>
         <ErrorMessage error={message} data-testid="login-error-message" />
         <SubmitButton data-testid="sign-in-button" className="w-full mt-6">
-          Sign in
+          {dict.Login.signIn}
         </SubmitButton>
       </form>
       <span className="text-center text-ui-fg-base text-small-regular mt-6">
-        Not a member?{" "}
+        {dict.Login.notAMember}{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
           className="underline"
           data-testid="register-button"
         >
-          Join us
+          {dict.Login.joinUs}
         </button>
         .
       </span>

@@ -14,7 +14,16 @@ type CartTotalsProps = {
     currency_code: string
     shipping_subtotal?: number | null
   }
-  dict: any
+  dict: {
+    CartTotals: {
+      subtotal: string
+      discount: string
+      shipping: string
+      taxes: string
+      giftCard: string
+      total: string
+    }
+  }
 }
 
 const CartTotals: React.FC<CartTotalsProps> = ({ totals, dict }) => {

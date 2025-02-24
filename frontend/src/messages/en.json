@@ -1,0 +1,93 @@
+{
+  "Nav": {
+    "name": "Gardening store Bolahro",
+    "account": "Account",
+    "cart": "Cart (0)"
+  },
+  "SideMenu": {
+    "menu": "Menu",
+    "Home": "Home",
+    "Store": "Store",
+    "Account": "Account",
+    "Cart": "Cart"
+  },
+  "Store": {
+    "allProducts": "All products"
+  },
+  "CartDropdown": {
+    "quantity": "Quantity",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "goToCart": "Go to cart",
+    "empty": "Your shopping bag is empty.",
+    "goToAllProducts": "Go to all products page",
+    "exploreProducts": "Explore products",
+    "cart": "Cart"
+  },
+  "Summary": {
+    "summary": "Summary",
+    "goToCheckout": "Go to checkout"
+  },
+  "CartTotals": {
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "shipping": "Shipping",
+    "giftCard": "Gift card",
+    "taxes": "Taxes",
+    "total": "Total"
+  },
+  "SignInPrompt": {
+    "alreadyHaveAnAccount": "Already have an account?",
+    "signInForBetterExperience": "Sign in for a better experience.",
+    "signIn": "Sign in"
+  },
+  "EmptyCartMessage": {
+    "cart": "Cart",
+    "empty": "You don't have anything in your cart. Let's change that, use the link below to start browsing our products.",
+    "exploreProducts": "Explore products"
+  },
+  "CheckoutSummary": {
+    "inYourCart": "In your Cart"
+  },
+  "Login": {
+    "welcomeBack": "Welcome back",
+    "signInToAccessShopping": "Sign in to access an enhanced shopping experience.",
+    "signIn": "Sign in",
+    "notAMember": "Not a member?",
+    "joinUs": "Join us",
+    "email": "Email",
+    "password": "Password"
+  },
+  "Register": {
+    "becomeABolagroMember": "Become a Bolagro Store Member",
+    "createMemberProfile": "Create your Bolagro Store Member profile, and get access to an enhanced shopping experience.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "password": "Password",
+    "agreeToStoreRules": "By creating an account, you agree to Bolagro Store's",
+    "privacyPolicy": "Privacy Policy",
+    "and": "and",
+    "termsOfUse": "Terms of Use",
+    "join": "Join",
+    "alreadyAMember": "Already a member?",
+    "signIn": "Sign in"
+  },
+  "Addresses": {
+    "shippingAddress": "Shipping Addresses",
+    "viewAndUpdate": "View and update your shipping addresses, you can add as many as you like. Saving your addresses will make them available during checkout."
+  },
+  "OrderDetailsTemplate": {
+    "orderDetails": "Order details",
+    "backToOverview": "Back to overview"
+  },
+  "Orders": {
+    "viewPreviousOrders": "View your previous orders and their status. You can also create returns or exchanges for your orders if needed."
+  },
+  "OrderOverview": {
+    "nothingToSeeHere": "Nothing to see here",
+    "youDontHaveAnyOrders": "You don't have any orders yet, let us change that",
+    "continueShopping": "Continue shopping"
+  }
+}

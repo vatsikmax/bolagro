@@ -1,0 +1,93 @@
+{
+  "Nav": {
+    "name": "Mагазин садівництва Болагро",
+    "account": "Акаунт",
+    "cart": "Кошик (0)"
+  },
+  "SideMenu": {
+    "menu": "Меню",
+    "Home": "Головна",
+    "Store": "Магазин",
+    "Account": "Акаунт",
+    "Cart": "Кошик"
+  },
+  "Store": {
+    "allProducts": "Всі товари"
+  },
+  "CartDropdown": {
+    "quantity": "Кількість",
+    "remove": "Видалити",
+    "subtotal": "Підсумок",
+    "goToCart": "Перейти до кошика",
+    "empty": "Ваша корзина пуста.",
+    "goToAllProducts": "Перейти на сторінку всіх товарів",
+    "exploreProducts": "Вивчати товари",
+    "cart": "Кошик"
+  },
+  "Summary": {
+    "summary": "Підсумок",
+    "goToCheckout": "Перейти до оплати"
+  },
+  "CartTotals": {
+    "subtotal": "Підсумок",
+    "discount": "Знижка",
+    "shipping": "Доставка",
+    "giftCard": "Подарункова картка",
+    "taxes": "Податки",
+    "total": "Всього"
+  },
+  "SignInPrompt": {
+    "alreadyHaveAnAccount": "Вже маєте акаунт?",
+    "signInForBetterExperience": "Увійдіть для зручнішого використання сайту.",
+    "signIn": "Увійти"
+  },
+  "EmptyCartMessage": {
+    "cart": "Кошик",
+    "empty": "Ваш кошик пустий. Давайте змінимо це, скористайтеся посиланням нижче, щоб почати перегляд наших товарів.",
+    "exploreProducts": "Вивчати товари"
+  },
+  "CheckoutSummary": {
+    "inYourCart": "У вашому кошику"
+  },
+  "Login": {
+    "welcomeBack": "Ласкаво просимо назад",
+    "signInToAccessShopping": "Увійдіть, щоб отримати зручніше купувати.",
+    "signIn": "Увійти",
+    "notAMember": "Не є учасником?",
+    "joinUs": "Приєднуйтесь",
+    "email": "Електронна пошта",
+    "password": "Пароль"
+  },
+  "Register": {
+    "becomeABolagroMember": "Станьте учасником магазину Болагро",
+    "createMemberProfile": "Створіть свій профіль учасника магазину Болагро та отримайте доступ до зручних покупок.",
+    "firstName": "Ім'я",
+    "lastName": "Прізвище",
+    "email": "Електронна пошта",
+    "phone": "Телефон",
+    "password": "Пароль",
+    "agreeToStoreRules": "Створюючи обліковий запис, ви погоджуєтеся з правилами магазину Болагро",
+    "privacyPolicy": "Політика конфіденційності",
+    "and": "та",
+    "termsOfUse": "Умови використання",
+    "join": "Приєднатися",
+    "alreadyAMember": "Вже є учасником?",
+    "signIn": "Увійти"
+  },
+  "Addresses": {
+    "shippingAddress": "Адреси доставки",
+    "viewAndUpdate": "Перегляньте та оновіть свої адреси доставки, ви можете додати декілька адрес. Збережені адреси будуть доступні під час оформлення замовлення."
+  },
+  "OrderDetailsTemplate": {
+    "orderDetails": "Деталі замовлення",
+    "backToOverview": "Повернутися до огляду"
+  },
+  "Orders": {
+    "viewPreviousOrders": "Переглянути попередні замовлення і їх статуси. Ви також можете створити повернення або обмін Вашого замовлення якщо необхідно."
+  },
+  "OrderOverview": {
+    "nothingToSeeHere": "Тут нічого немає",
+    "youDontHaveAnyOrders": "У вас ще немає замовлень, давайте змінимо це",
+    "continueShopping": "Продовжити покупки"
+  }
+}

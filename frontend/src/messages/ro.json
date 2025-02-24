@@ -1,0 +1,93 @@
+{
+  "Nav": {
+    "name": "Magazin de grădinărit Bolahro",
+    "account": "Cont",
+    "cart": "Coș (0)"
+  },
+  "SideMenu": {
+    "menu": "Meniu",
+    "Home": "Acasă",
+    "Store": "Magazin",
+    "Account": "Cont",
+    "Cart": "Coș"
+  },
+  "Store": {
+    "allProducts": "Toate produsele"
+  },
+  "CartDropdown": {
+    "quantity": "Cantitate",
+    "remove": "Elimină",
+    "subtotal": "Subtotal",
+    "goToCart": "Mergi la coș",
+    "empty": "Coșul tău este gol.",
+    "goToAllProducts": "Mergi la pagina cu toate produsele",
+    "exploreProducts": "Explorează produsele",
+    "cart": "Coș"
+  },
+  "Summary": {
+    "summary": "Sumar",
+    "goToCheckout": "Mergi la plată"
+  },
+  "CartTotals": {
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "shipping": "Livrare",
+    "giftCard": "Card cadou",
+    "taxes": "Taxe",
+    "total": "Total"
+  },
+  "SignInPrompt": {
+    "alreadyHaveAnAccount": "Deja ai un cont?",
+    "signInForBetterExperience": "Conectează-te pentru o experiență mai bună.",
+    "signIn": "Conectează-te"
+  },
+  "EmptyCartMessage": {
+    "cart": "Coș",
+    "empty": "Nu ai nimic în coș. Să schimbăm asta, folosește link-ul de mai jos pentru a începe să navighezi prin produsele noastre.",
+    "exploreProducts": "Explorează produsele"
+  },
+  "CheckoutSummary": {
+    "inYourCart": "În coșul tău"
+  },
+  "Login": {
+    "welcomeBack": "Bine ai revenit",
+    "signInToAccessShopping": "Conectează-te pentru a avea o experiență de cumpărături îmbunătățită.",
+    "signIn": "Conectează-te",
+    "notAMember": "Nu ești membru?",
+    "joinUs": "Alătură-te nouă",
+    "email": "Email",
+    "password": "Parolă"
+  },
+  "Register": {
+    "becomeABolagroMember": "Devino membru al magazinului Bolagro",
+    "createMemberProfile": "Creează-ți profilul de membru al magazinului Bolagro și ai acces la o experiență de cumpărături îmbunătățită.",
+    "firstName": "Prenume",
+    "lastName": "Nume",
+    "email": "Email",
+    "phone": "Telefon",
+    "password": "Parolă",
+    "agreeToStoreRules": "Creând un cont, ești de acord cu regulile magazinului Bolagro",
+    "privacyPolicy": "Politica de confidențialitate",
+    "and": "și",
+    "termsOfUse": "Termenii de utilizare",
+    "join": "Alătură-te",
+    "alreadyAMember": "Ești deja membru?",
+    "signIn": "Conectează-te"
+  },
+  "Addresses": {
+    "shippingAddress": "Adrese de livrare",
+    "viewAndUpdate": "Vizualizează și actualizează adresele tale de livrare, poți adăuga mai multe adrese. Adresele salvate vor fi disponibile la finalizarea comenzii."
+  },
+  "OrderDetailsTemplate": {
+    "orderDetails": "Detalii comandă",
+    "backToOverview": "Înapoi la rezumat"
+  },
+  "Orders": {
+    "viewPreviousOrders": "Vizualizează comenzile anterioare și starea lor. De asemenea, poți crea o returnare sau un schimb al comenzii tale dacă este necesar."
+  },
+  "OrderOverview": {
+    "nothingToSeeHere": "Nimic de văzut aici",
+    "youDontHaveAnyOrders": "Nu ai nicio comandă încă, să schimbăm asta",
+    "continueShopping": "Continuă cumpărăturile"
+  }
+}
