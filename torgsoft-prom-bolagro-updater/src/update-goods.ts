@@ -6,6 +6,7 @@ import { importToPromByFile } from './prom/api';
 import path from 'path';
 import readline from 'readline';
 import fs from 'fs';
+import { createCategories, updateProducts } from './bolagro/api';
 
 // Add a type declaration for process.pkg
 declare global {
@@ -180,10 +181,20 @@ async function main() {
     await waitForKeypress();
     process.exit(1);
   }
+
   try {
     await importToPromByFile(importPromFile);
   } catch (error) {
     console.error('Помилка імпорту в пром:', error);
+    await waitForKeypress();
+    process.exit(1);
+  }
+
+  try {
+    await createCategories(getGroups())
+    await updateProducts(promImportProducts)
+  } catch (error) {
+    console.error('Помилка оновлення товарів в магазину Болагро:', error);
     await waitForKeypress();
     process.exit(1);
   }

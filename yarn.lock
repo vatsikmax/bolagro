@@ -16567,24 +16567,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prom.ua@workspace:prom":
-  version: 0.0.0-use.local
-  resolution: "prom.ua@workspace:prom"
-  dependencies:
-    "@types/node": "npm:^18.13.4"
-    axios: "npm:^0.21.1"
-    dotenv: "npm:^16.4.7"
-    form-data: "npm:^4.0.0"
-    pkg: "npm:^5.8.1"
-    rimraf: "npm:^6.0.1"
-    sync-request: "npm:^6.1.0"
-    typescript: "npm:^5.7.3"
-    xlsx: "npm:^0.17.0"
-  bin:
-    prom.ua: dist/update-goods-prom.js
-  languageName: unknown
-  linkType: soft
-
 "promise-retry@npm:^2.0.1":
   version: 2.0.1
   resolution: "promise-retry@npm:2.0.1"
@@ -18830,6 +18812,24 @@ __metadata:
   checksum: 10c0/93937279934bd66cc3270016dd8d0afec14fb7c94a05c72dc57321f8bd1fa97e5bea6d1f7c89e728d077ca31ea125b78320a616a6c6cd0e6b9cb94cb864381c1
   languageName: node
   linkType: hard
+
+"torgsoft-prom-bolagro-updater@workspace:torgsoft-prom-bolagro-updater":
+  version: 0.0.0-use.local
+  resolution: "torgsoft-prom-bolagro-updater@workspace:torgsoft-prom-bolagro-updater"
+  dependencies:
+    "@types/node": "npm:^18.13.4"
+    axios: "npm:^0.21.1"
+    dotenv: "npm:^16.4.7"
+    form-data: "npm:^4.0.0"
+    pkg: "npm:^5.8.1"
+    rimraf: "npm:^6.0.1"
+    sync-request: "npm:^6.1.0"
+    typescript: "npm:^5.7.3"
+    xlsx: "npm:^0.17.0"
+  bin:
+    torgsoft-prom-bolagro-updater: dist/update-goods-prom.js
+  languageName: unknown
+  linkType: soft
 
 "tr46@npm:~0.0.3":
   version: 0.0.3

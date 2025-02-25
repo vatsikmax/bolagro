@@ -1,15 +1,15 @@
 {
-  "name": "prom.ua",
+  "name": "torgsoft-prom-bolagro-updater",
   "version": "1.0.0",
-  "main": "dist/update-goods-prom.js",
-  "bin": "dist/update-goods-prom.js",
+  "main": "dist/update-goods.js",
+  "bin": "dist/update-goods.js",
   "scripts": {
     "build": "rimraf dist && npx tsc",
-    "update": "yarn build && node dist/update-goods-prom.js",
+    "update": "yarn build && node dist/update-goods.js",
     "pkg": "yarn build && pkg ."
   },
   "pkg": {
-    "scripts": "dist/update-goods-prom.js",
+    "scripts": "dist/update-goods.js",
     "targets": [
       "node18-win-x64"
     ]
