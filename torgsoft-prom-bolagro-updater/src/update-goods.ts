@@ -6,7 +6,7 @@ import { importToPromByFile } from './prom/api';
 import path from 'path';
 import readline from 'readline';
 import fs from 'fs';
-import { createCategories, updateProducts } from './bolagro/api';
+import { createCategories } from './bolagro/api';
 
 // Add a type declaration for process.pkg
 declare global {
@@ -16,7 +16,6 @@ declare global {
     }
   }
 }
-
 // Get the directory of the executable
 const execDir = process.pkg ? path.dirname(process.execPath) : process.cwd();
 // Create a writable stream for the log file
@@ -59,12 +58,12 @@ function waitForKeypress(): Promise<void> {
 }
 
 const TYPES = Object.freeze({
-  SEEDS: { torgsoft: "Семена", ru: "Семена, саженцы и рассада", ua: "Насіння, саджанці та розсада", prom: "https://prom.ua/ua/Ovoschnye-kultury", id: 12102 },
-  FERTILIZERS: { torgsoft: "Удобрения", ru: "Удобрения", ua: "Добрива, загальне", prom: "https://prom.ua/ua/Udobreniya-obschee", id: 11699 },
-  PLAN_PROTECTION_PRODUCS: { torgsoft: "СЗР", ru: "Средства защит растений", ua: "Засоби захисту рослин, загальне", prom: "https://prom.ua/ua/Sredstva-zaschity-rastenij-obschee", id: 11106 },
-  DRIP_IRRIGATION: { torgsoft: "Капельное орошение", ru: "Набор для капельного орошения", ua: "Набори для крапельного поливу", prom: "https://prom.ua/ua/Nabory-dlya-kapelnogo", id: 1250359 },
-  BEE_KEEPING: { torgsoft: "Пчеловодство", ru: "Пчеловодство", ua: "Бджільництво", prom: "https://prom.ua/ua/Pchelovodstvo", id: 105 },
-  SOILS: { torgsoft: "Грунты", ru: "Субстраты, компосты для растений", ua: "Субстрати, компости для рослин", prom: "https://prom.ua/ua/Substraty-komposty-dlya-rastenij", id: 12520 },
+  SEEDS: { torgsoft: "Семена", ru: "Семена, саженцы и рассада", ua: "Насіння, саджанці та розсада", prom: "https://prom.ua/ua/Ovoschnye-kultury", id: 12102, handle: "seeds" },
+  FERTILIZERS: { torgsoft: "Удобрения", ru: "Удобрения", ua: "Добрива, загальне", prom: "https://prom.ua/ua/Udobreniya-obschee", id: 11699, handle: "fertilizers" },
+  PLAN_PROTECTION_PRODUCS: { torgsoft: "СЗР", ru: "Средства защит растений", ua: "Засоби захисту рослин, загальне", prom: "https://prom.ua/ua/Sredstva-zaschity-rastenij-obschee", id: 11106, handle: "protection" },
+  DRIP_IRRIGATION: { torgsoft: "Капельное орошение", ru: "Набор для капельного орошения", ua: "Набори для крапельного поливу", prom: "https://prom.ua/ua/Nabory-dlya-kapelnogo", id: 1250359, handle: "irrigation" },
+  BEE_KEEPING: { torgsoft: "Пчеловодство", ru: "Пчеловодство", ua: "Бджільництво", prom: "https://prom.ua/ua/Pchelovodstvo", id: 105, handle: "beekeeping" },
+  SOILS: { torgsoft: "Грунты", ru: "Субстраты, компосты для растений", ua: "Субстрати, компости для рослин", prom: "https://prom.ua/ua/Substraty-komposty-dlya-rastenij", id: 12520, handle: "soils" },
 });
 
 const COLUMNS = Object.freeze({
@@ -173,26 +172,26 @@ async function main() {
   if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
   }
-  const importPromFile = path.join(uploadsDir, `import_to_prom_${formatDate()}.xlsx`);
-  try {
-    await writeToImportFile(importPromFile, promImportProducts, getGroups());
-  } catch (error) {
-    console.error('Ошибка записи в файл:', error);
-    await waitForKeypress();
-    process.exit(1);
-  }
+  // const importPromFile = path.join(uploadsDir, `import_to_prom_${formatDate()}.xlsx`);
+  // try {
+  //   await writeToImportFile(importPromFile, promImportProducts, getGroups());
+  // } catch (error) {
+  //   console.error('Ошибка записи в файл:', error);
+  //   await waitForKeypress();
+  //   process.exit(1);
+  // }
+
+  // try {
+  //   await importToPromByFile(importPromFile);
+  // } catch (error) {
+  //   console.error('Ошибка импорта в пром:', error);
+  //   await waitForKeypress();
+  //   process.exit(1);
+  // }
 
   try {
-    await importToPromByFile(importPromFile);
-  } catch (error) {
-    console.error('Ошибка импорта в пром:', error);
-    await waitForKeypress();
-    process.exit(1);
-  }
-
-  try {
-    await createCategories(getGroups())
-    await updateProducts(promImportProducts)
+    await createCategories(Object.values(TYPES))
+    // await updateProducts(promImportProducts)
   } catch (error) {
     console.error('Ошибка обновления товаров в магазине Болагро:', error);
     await waitForKeypress();
@@ -201,7 +200,7 @@ async function main() {
 
   // Delete the XLSX file at the end of the program
   try {
-    fs.unlinkSync(torgsoftExportFilePath);
+    // fs.unlinkSync(torgsoftExportFilePath);
     console.log(`Файл удален: ${torgsoftExportFilePath}`);
   } catch (error) {
     console.error('Ошибка удаления файла:', error);
