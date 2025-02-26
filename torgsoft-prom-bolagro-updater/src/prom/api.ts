@@ -6,7 +6,7 @@ const promApiToken = process.env.PROM_API_TOKEN;
 const promUrl = 'https://my.prom.ua/api/v1/';
 
 export async function importToPromByFile(filePath: string): Promise<void> {
-  console.log('Починаю імпорт файлу в пром', filePath);
+  console.log('Начинаю импорт файла в пром', filePath);
   const form = new FormData();
   form.append('file', fs.createReadStream(filePath));
   form.append('data', JSON.stringify({
@@ -22,8 +22,8 @@ export async function importToPromByFile(filePath: string): Promise<void> {
     const response = await axios.post(promUrl + 'products/import_file', form, { headers });
     console.log(response.data);
   } catch (error: any) {
-    console.error('Помилка імпорту файлу:', error.response ? error.response.data : error.message);
-    console.log('Будь ласка зайдіть на prom.ua і скасуйте імпорт якщо необхідно')
+    console.error('Ошибка импорта файла:', error.response ? error.response.data : error.message);
+    console.log('Пожалуйста, зайдите на prom.ua и отмените импорт, если необходимо')
     throw error;
   }
 }
@@ -33,7 +33,7 @@ export async function importToPromByFile(filePath: string): Promise<void> {
 //       headers: {  'Authorization': `Bearer ${promApiToken}` },
 //   });
 //   const responseBody = JSON.parse(response.getBody('utf8'));
-//   console.log('РЕЗУЛЬТАТ ЗАПИТУ:\n', responseBody);
+//   console.log('РЕЗУЛЬТАТ ЗАПРОСА:\n', responseBody);
 // }
 
 // function updateProductViaApi(externalId: string, name: string): void {
@@ -56,5 +56,5 @@ export async function importToPromByFile(filePath: string): Promise<void> {
 //       body: JSON.stringify(body),
 //   });
 //   const responseBody = JSON.parse(response.getBody('utf8'));
-//   console.log('РЕЗУЛЬТАТ ОНОВЛЕННЯ:\n', responseBody);
+//   console.log('РЕЗУЛЬТАТ ОБНОВЛЕНИЯ:\n', responseBody);
 // }

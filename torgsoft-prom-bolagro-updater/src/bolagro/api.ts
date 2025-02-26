@@ -13,14 +13,14 @@ const password = process.env.BOLAGRO_PASSWORD;
 
 async function login() {
   if (!user || !password) {
-    throw new Error('Не вказані дані для авторизації для магазину Болагро');
+    throw new Error('Не указаны данные для авторизации для магазина Болагро');
   }
   try {
     const response = await axios.post(`${process.env.BOLAGRO_HOST}${AUTH_URL}`, { email: user, password: password }, { headers: AUTH_HEADERS });
     console.log(response.data);
     return response.data;
   } catch (error: any) {
-    console.error('Помилка авторизації в магазині Болагро:', error.response ? error.response.data : error.message);
+    console.error('Ошибка авторизации в магазине Болагро:', error.response ? error.response.data : error.message);
     throw error;
   }
 }
@@ -28,8 +28,8 @@ async function login() {
 export async function createCategories(categories: any[]) {
   const token = await login();
   const bolagroCategories = categories.map((category) => ({
+    //TODO map categories to bolagro categories
   }));
-  //TODO map categoreis to bolagro categories
 
   try {
     for (const category of categories) {
@@ -37,10 +37,9 @@ export async function createCategories(categories: any[]) {
       console.log(response.data);
     }
   } catch (error: any) {
-    console.error('Помилка створення категорій:', error.response ? error.response.data : error.message);
+    console.error('Ошибка создания категорий:', error.response ? error.response.data : error.message);
     throw error;
   }
-
 }
 
 export async function updateProducts(products: any) {
@@ -48,7 +47,6 @@ export async function updateProducts(products: any) {
   const bolagroProducts = products.map((product) => ({
     title: product.title,
     status: product.status,
-
     options: product.options.map((option) => ({
       title: option.title,
       values: option.values,
@@ -63,43 +61,14 @@ export async function updateProducts(products: any) {
       options: variant.options,
     })),
   }));
+
   try {
     for (const product of products) {
       const response = await axios.post(`${process.env.BOLAGRO_HOST}${PRODUCTS_URL}`, product, { headers: { ...AUTH_HEADERS, 'Authorization': `Bearer ${token}` } });
       console.log(response.data);
     }
   } catch (error: any) {
-    console.error('Помилка оновлення товарів:', error.response ? error.response.data : error.message);
+    console.error('Ошибка обновления товаров:', error.response ? error.response.data : error.message);
     throw error;
   }
-
 }
-
-curl - X POST 'http://localhost:9000/admin/products' \
--H 'Content-Type: application/json' \
--H 'Authorization: Bearer {token}' \
---data '{
-"title": "T-Shirt",
-  "status": "published",
-    "options": [
-      {
-        "title": "Color",
-        "values": ["Blue"]
-      }
-    ],
-      "variants": [
-        {
-          "title": "T-Shirt",
-          "prices": [
-            {
-              "currency_code": "eur",
-              "amount": 10
-            }
-          ],
-          "manage_inventory": false,
-          "options": {
-            "Color": "Blue"
-          }
-        }
-      ]
-}'

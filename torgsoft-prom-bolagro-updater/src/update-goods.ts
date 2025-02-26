@@ -46,7 +46,7 @@ function waitForKeypress(): Promise<void> {
       output: process.stdout,
     });
 
-    console.log("Нажміть будь-яку кнопку для продовження...");
+    console.log("Нажмите любую кнопку для продолжения...");
 
     process.stdin.setRawMode(true);
     process.stdin.resume();
@@ -139,7 +139,7 @@ async function main() {
   const xlsxFile = files.find(file => file.endsWith('.xlsx'));
 
   if (!xlsxFile) {
-    console.error(`Не знайдено жодного XLSX файлу в ${execDir}.`);
+    console.error(`Не найдено ни одного XLSX файла в ${execDir}.`);
     await waitForKeypress();
     process.exit(1);
   }
@@ -149,10 +149,10 @@ async function main() {
   const filteredProducts = torgsoftProducts.filter(tp => {
     return Object.values(TYPES).map(type => type.torgsoft).some(at => tp[COLUMNS.TYPE.torgsoft].trim().includes(at));
   });
-  console.log(`Всього продуктів: ${torgsoftProducts.length}, продуктів буде імпортовано: ${filteredProducts.length}`);
+  console.log(`Всего продуктов: ${torgsoftProducts.length}, продуктов будет импортировано: ${filteredProducts.length}`);
 
   if (filteredProducts.length === 0) {
-    console.log('Немає продуктів для імпорту, ймовірно сталась помилка, імпорт не буде виконано');
+    console.log('Нет продуктов для импорта, вероятно произошла ошибка, импорт не будет выполнен, проверьте закрит ли файл экспорта продуктов из Торгсофт');
     await waitForKeypress();
     process.exit(1);
 
@@ -161,12 +161,12 @@ async function main() {
     return mapToPromImportProduct(tp);
   });
 
-  console.log('Товари з фото: ', promImportProducts.filter(p => p[COLUMNS.LINK_TO_IMAGE.prom]).length, "без фото:", promImportProducts.filter(p => !p[COLUMNS.LINK_TO_IMAGE.prom]).length);
-  console.log('Товари з описом: ', promImportProducts.filter(p => p[COLUMNS.DESCRIPTIONS.prom]).length, "без опису:", promImportProducts.filter(p => !p[COLUMNS.DESCRIPTIONS.prom]).length);
-  console.log('Товари з фото і описом: ', promImportProducts.filter(p => p[COLUMNS.LINK_TO_IMAGE.prom] && p[COLUMNS.DESCRIPTIONS.prom]).length);
-  console.log('Товари без фото і без опису: ', promImportProducts.filter(p => !p[COLUMNS.LINK_TO_IMAGE.prom] && !p[COLUMNS.DESCRIPTIONS.prom]).length);
-  console.log('Товари без фото але з описом: ', promImportProducts.filter(p => !p[COLUMNS.LINK_TO_IMAGE.prom] && p[COLUMNS.DESCRIPTIONS.prom]).length);
-  console.log('Товари з фото але без опису: ', promImportProducts.filter(p => p[COLUMNS.LINK_TO_IMAGE.prom] && !p[COLUMNS.DESCRIPTIONS.prom]).length);
+  console.log('Товары с фото: ', promImportProducts.filter(p => p[COLUMNS.LINK_TO_IMAGE.prom]).length, "без фото:", promImportProducts.filter(p => !p[COLUMNS.LINK_TO_IMAGE.prom]).length);
+  console.log('Товары с описанием: ', promImportProducts.filter(p => p[COLUMNS.DESCRIPTIONS.prom]).length, "без описания:", promImportProducts.filter(p => !p[COLUMNS.DESCRIPTIONS.prom]).length);
+  console.log('Товары с фото и описанием: ', promImportProducts.filter(p => p[COLUMNS.LINK_TO_IMAGE.prom] && p[COLUMNS.DESCRIPTIONS.prom]).length);
+  console.log('Товары без фото и без описания: ', promImportProducts.filter(p => !p[COLUMNS.LINK_TO_IMAGE.prom] && !p[COLUMNS.DESCRIPTIONS.prom]).length);
+  console.log('Товары без фото но с описанием: ', promImportProducts.filter(p => !p[COLUMNS.LINK_TO_IMAGE.prom] && p[COLUMNS.DESCRIPTIONS.prom]).length);
+  console.log('Товары с фото но без описания: ', promImportProducts.filter(p => p[COLUMNS.LINK_TO_IMAGE.prom] && !p[COLUMNS.DESCRIPTIONS.prom]).length);
 
   // Create 'uploads' folder if it doesn't exist
   const uploadsDir = path.join(execDir, 'uploads');
@@ -177,7 +177,7 @@ async function main() {
   try {
     await writeToImportFile(importPromFile, promImportProducts, getGroups());
   } catch (error) {
-    console.error('Помилка запису в файл:', error);
+    console.error('Ошибка записи в файл:', error);
     await waitForKeypress();
     process.exit(1);
   }
@@ -185,7 +185,7 @@ async function main() {
   try {
     await importToPromByFile(importPromFile);
   } catch (error) {
-    console.error('Помилка імпорту в пром:', error);
+    console.error('Ошибка импорта в пром:', error);
     await waitForKeypress();
     process.exit(1);
   }
@@ -194,7 +194,7 @@ async function main() {
     await createCategories(getGroups())
     await updateProducts(promImportProducts)
   } catch (error) {
-    console.error('Помилка оновлення товарів в магазину Болагро:', error);
+    console.error('Ошибка обновления товаров в магазине Болагро:', error);
     await waitForKeypress();
     process.exit(1);
   }
@@ -202,9 +202,9 @@ async function main() {
   // Delete the XLSX file at the end of the program
   try {
     fs.unlinkSync(torgsoftExportFilePath);
-    console.log(`Файл видалено: ${torgsoftExportFilePath}`);
+    console.log(`Файл удален: ${torgsoftExportFilePath}`);
   } catch (error) {
-    console.error('Помилка видалення файлу:', error);
+    console.error('Ошибка удаления файла:', error);
     await waitForKeypress();
     process.exit(1);
   }
