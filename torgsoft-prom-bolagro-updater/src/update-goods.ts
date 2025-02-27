@@ -6,7 +6,7 @@ import { importToPromByFile } from './prom/api';
 import path from 'path';
 import readline from 'readline';
 import fs from 'fs';
-import { createCategories } from './bolagro/api';
+import { createCategories, updateProducts } from './bolagro/api';
 
 // Add a type declaration for process.pkg
 declare global {
@@ -172,26 +172,26 @@ async function main() {
   if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
   }
-  // const importPromFile = path.join(uploadsDir, `import_to_prom_${formatDate()}.xlsx`);
-  // try {
-  //   await writeToImportFile(importPromFile, promImportProducts, getGroups());
-  // } catch (error) {
-  //   console.error('Ошибка записи в файл:', error);
-  //   await waitForKeypress();
-  //   process.exit(1);
-  // }
+  const importPromFile = path.join(uploadsDir, `import_to_prom_${formatDate()}.xlsx`);
+  try {
+    await writeToImportFile(importPromFile, promImportProducts, getGroups());
+  } catch (error) {
+    console.error('Ошибка записи в файл:', error);
+    await waitForKeypress();
+    process.exit(1);
+  }
 
-  // try {
-  //   await importToPromByFile(importPromFile);
-  // } catch (error) {
-  //   console.error('Ошибка импорта в пром:', error);
-  //   await waitForKeypress();
-  //   process.exit(1);
-  // }
+  try {
+    await importToPromByFile(importPromFile);
+  } catch (error) {
+    console.error('Ошибка импорта в пром:', error);
+    await waitForKeypress();
+    process.exit(1);
+  }
 
   try {
     await createCategories(Object.values(TYPES))
-    // await updateProducts(promImportProducts)
+    await updateProducts(promImportProducts)
   } catch (error) {
     console.error('Ошибка обновления товаров в магазине Болагро:', error);
     await waitForKeypress();
@@ -200,7 +200,7 @@ async function main() {
 
   // Delete the XLSX file at the end of the program
   try {
-    // fs.unlinkSync(torgsoftExportFilePath);
+    fs.unlinkSync(torgsoftExportFilePath);
     console.log(`Файл удален: ${torgsoftExportFilePath}`);
   } catch (error) {
     console.error('Ошибка удаления файла:', error);
