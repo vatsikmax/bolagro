@@ -134,15 +134,6 @@ function mapToPromImportProduct(torgsoftProduct: any) {
   };
 }
 
-function isFileOpen(filePath: string) {
-  try {
-    fs.accessSync(filePath, fs.constants.R_OK | fs.constants.W_OK);
-    return false; // File is not locked
-  } catch (err) {
-    return true; // File is locked (likely open in Excel)
-  }
-}
-
 async function main() {
   // Find the first XLSX file in the directory
   const files = fs.readdirSync(execDir);
@@ -155,11 +146,6 @@ async function main() {
   }
 
   const torgsoftExportFilePath = path.join(execDir, xlsxFile);
-  if (isFileOpen(torgsoftExportFilePath)) {
-    console.log('Файл заблокирован. Закройте файл и попробуйте снова перезапустив программу.');
-    await waitForKeypress();
-    process.exit(1);
-  }
   const torgsoftProducts = readTorgsoftProducts(torgsoftExportFilePath);
   const filteredProducts = torgsoftProducts.filter(tp => {
     return Object.values(TYPES).map(type => type.torgsoft).some(at => tp[COLUMNS.TYPE.torgsoft].trim().includes(at));
@@ -167,7 +153,7 @@ async function main() {
   console.log(`Всего продуктов: ${torgsoftProducts.length}, продуктов будет импортировано: ${filteredProducts.length}`);
 
   if (filteredProducts.length === 0) {
-    console.log('Нет продуктов для импорта, вероятно произошла ошибка, импорт не будет выполнен, проверьте закрыт ли файл экспорта продуктов из Торгсофт xlsx. Перезапустите программу после устранения ошибок.');
+    console.log('Нет продуктов для импорта, вероятно произошла ошибка, импорт не будет выполнен\nПроверьте закрыт ли файл экспорта продуктов из Торгсофт xlsx\nПерезапустите программу после устранения ошибок.');
     await waitForKeypress();
     process.exit(1);
 
