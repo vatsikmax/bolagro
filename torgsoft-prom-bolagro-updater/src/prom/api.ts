@@ -2,10 +2,9 @@ import fs from 'fs';
 import FormData from 'form-data';
 import axios from 'axios';
 
-const promApiToken = process.env.PROM_API_TOKEN;
 const promUrl = 'https://my.prom.ua/api/v1/';
 
-export async function importToPromByFile(filePath: string): Promise<void> {
+export async function importToPromByFile(filePath: string, promApiToken: string): Promise<void> {
   console.log('Начинаю импорт файла в пром', filePath);
   const form = new FormData();
   form.append('file', fs.createReadStream(filePath));

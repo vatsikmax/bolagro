@@ -8,13 +8,7 @@ const AUTH_HEADERS = {
   'Content-Type': 'application/json',
 };
 
-const user = process.env.BOLAGRO_USER;
-const password = process.env.BOLAGRO_PASSWORD;
-
-async function login() {
-  if (!user || !password) {
-    throw new Error('Не указаны данные для авторизации для магазина Болагро');
-  }
+export async function login(user: string, password: string) {
   try {
     const response = await axios.post(`${process.env.BOLAGRO_HOST}${AUTH_URL}`, { email: user, password: password }, { headers: {} });
     return response.data;
@@ -24,8 +18,7 @@ async function login() {
   }
 }
 
-export async function createCategories(categories: any[]) {
-  const { token } = await login();
+export async function createCategories(categories: any[], token: string) {
   const bolagroCategories = categories.map((category) => ({
     name: category.ru,
     is_active: true,
@@ -62,8 +55,7 @@ async function getShippingProfile(token: string) {
   }
 }
 
-export async function updateProducts(products: any) {
-  const { token } = await login();
+export async function updateProducts(products: any, token: string) {
   const { product_categories } = await getCategories(token);
   const { shipping_profiles } = await getShippingProfile(token);
   const bolagroProducts = products.map((product: any) => ({
