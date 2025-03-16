@@ -26,6 +26,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "images.prom.ua",
+      },
+      {
+        protocol: "https",
         hostname: "medusa-public-images.s3.eu-west-1.amazonaws.com",
       },
       {
@@ -35,6 +39,14 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "medusa-server-testing.s3.us-east-1.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "badvasy.com.ua",
+      },
+      {
+        protocol: "https",
+        hostname: "kisson-agro.com.ua",
       },
     ],
   },

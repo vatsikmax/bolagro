@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 import 'dotenv/config';
-import { readTorgsoftProducts } from './torgsoft/read-export-file';
-import { writeToImportFile } from './prom/file-helper';
-import { importToPromByFile } from './prom/api';
+import { readTorgsoftProducts } from './torgsoft/file-helper';
+import { writeToBolagroCsvImportFile } from './bolagro/file-helper';
 import path from 'path';
-import readline from 'readline';
 import fs from 'fs';
-import { createCategories, login, updateProducts } from './bolagro/api';
+import { createCategories, getAllProducts, getCategories, getSalesChannels, login, updateProducts, uploadProductsFile } from './bolagro/api';
+import { COLUMNS, formatDate, TYPES, waitForKeypress } from './constants';
+import { mapToBolagroImportProduct } from './bolagro/mapper';
+import { importToProm } from './prom/import';
 
 // Add a type declaration for process.pkg
 declare global {
@@ -30,172 +31,105 @@ console.log = function (message?: any, ...optionalParams: any[]) {
   logFile.write(`${message} ${optionalParams.join(' ')}\n`);
 };
 
-function formatDate(): string {
-  const date = new Date();
-  const dd = String(date.getDate()).padStart(2, '0');
-  const mm = String(date.getMonth() + 1).padStart(2, '0'); // January is 0!
-  const yy = String(date.getFullYear()).slice(-2);
-  const hh = String(date.getHours()).padStart(2, '0');
-  const min = String(date.getMinutes()).padStart(2, '0');
-  return `${dd}-${mm}-${yy}_${hh}-${min}`;
-}
-
-function waitForKeypress(): Promise<void> {
-  return new Promise((resolve) => {
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-
-    console.log("Нажмите любую кнопку для продолжения...");
-
-    process.stdin.setRawMode(true);
-    process.stdin.resume();
-    process.stdin.on("data", () => {
-      process.stdin.setRawMode(false);
-      rl.close();
-      resolve();
-    });
-  });
-}
-
-const TYPES = Object.freeze({
-  SEEDS: { torgsoft: "Семена", ru: "Семена, саженцы и рассада", ua: "Насіння, саджанці та розсада", prom: "https://prom.ua/ua/Ovoschnye-kultury", id: 12102, handle: "seeds" },
-  FERTILIZERS: { torgsoft: "Удобрения", ru: "Удобрения", ua: "Добрива, загальне", prom: "https://prom.ua/ua/Udobreniya-obschee", id: 11699, handle: "fertilizers" },
-  PLAN_PROTECTION_PRODUCS: { torgsoft: "СЗР", ru: "Средства защиты растений", ua: "Засоби захисту рослин, загальне", prom: "https://prom.ua/ua/Sredstva-zaschity-rastenij-obschee", id: 11106, handle: "protection" },
-  DRIP_IRRIGATION: { torgsoft: "Капельное орошение", ru: "Набор для капельного орошения", ua: "Набори для крапельного поливу", prom: "https://prom.ua/ua/Nabory-dlya-kapelnogo", id: 1250359, handle: "irrigation" },
-  BEE_KEEPING: { torgsoft: "Пчеловодство", ru: "Пчеловодство", ua: "Бджільництво", prom: "https://prom.ua/ua/Pchelovodstvo", id: 105, handle: "beekeeping" },
-  SOILS: { torgsoft: "Грунты", ru: "Субстраты, компосты для растений", ua: "Субстрати, компости для рослин", prom: "https://prom.ua/ua/Substraty-komposty-dlya-rastenij", id: 12520, handle: "soils" },
-});
-
-const COLUMNS = Object.freeze({
-  NAME: { torgsoft: "Название товара", prom: "Назва_позиції" },
-  NAME_UKR: { prom: "Назва_позиції_укр" },
-  DESCRIPTIONS: { torgsoft: "Описание", prom: "Опис" },
-  DESCRIPTIONS_UKR: { prom: "Опис_укр" },
-  PRICE: { torgsoft: "Цена розничная", prom: "Ціна" },
-  QUANTITY: { torgsoft: "Количество", prom: "Кількість" },
-  LINK_TO_IMAGE: { torgsoft: "Ссылка на фото", prom: "Посилання_зображення" },
-  UNIT_OF_MEASUREMENT: { torgsoft: "Ед. изм.", prom: "Одиниця_виміру" },
-  EXTERNAL_ID: { torgsoft: "Код фото", prom: "Ідентифікатор_товару" },
-  UNITQUE_ID: { prom: "Унікальний_ідентифікатор" },
-  MANUFACTURER: { torgsoft: "Производитель", prom: "Виробник" },
-  COUNTRY: { torgsoft: "Страна производитель", prom: "Країна_виробник" },
-  CURRENCY: { prom: "Валюта" },
-  TYPE: { prom: "Посилання_підрозділу", torgsoft: "Вид товара" },
-  GROUP_NAME: { prom: "Назва_групи" },
-  CELL_TYPE: { prom: "Тип_товару" },
-  AVAILABILITY: { prom: "Наявність" },
-  GROUP_NUMBER: { prom: "Номер_групи" }
-});
-
-function getGroups() {
-  return Object.values(TYPES).map(type => {
-    return {
-      "Назва_групи": type.ru,
-      "Назва_групи_укр": TYPES.SEEDS.ua,
-      [COLUMNS.GROUP_NUMBER.prom]: type.id,
-    }
-  });
-}
-
-function mapToPromImportProduct(torgsoftProduct: any) {
-  const quantity = (typeof torgsoftProduct[COLUMNS.QUANTITY.torgsoft] === 'number' ? Math.floor(torgsoftProduct[COLUMNS.QUANTITY.torgsoft]) : Math.floor(Number(torgsoftProduct[COLUMNS.QUANTITY.torgsoft].replace(', ', '.'))));
-  const price = typeof torgsoftProduct[COLUMNS.PRICE.torgsoft] === 'number' ? torgsoftProduct[COLUMNS.PRICE.torgsoft] : Number(torgsoftProduct[COLUMNS.PRICE.torgsoft].replace(',', '.'));
-  const unitOfMeasurement = torgsoftProduct[COLUMNS.UNIT_OF_MEASUREMENT.torgsoft].trim() === '' ? 'шт.' : torgsoftProduct[COLUMNS.UNIT_OF_MEASUREMENT.torgsoft].trim();
-  const linkToImage = torgsoftProduct[COLUMNS.LINK_TO_IMAGE.torgsoft] ? torgsoftProduct[COLUMNS.LINK_TO_IMAGE.torgsoft]
-    .replace(/_x000d_/g, '')  // Remove _x000d_
-    .replace(/\r/g, '')       // Remove any leftover carriage returns
-    .replace(/\n{2,}/g, '\n') // Remove excessive new lines (if any)
-    .trim() : undefined;
-  const description = torgsoftProduct[COLUMNS.DESCRIPTIONS.torgsoft] ? torgsoftProduct[COLUMNS.DESCRIPTIONS.torgsoft]
-    .replace(/_x000d_/g, '')  // Remove _x000d_
-    .replace(/\r/g, '')       // Remove any leftover carriage returns
-    .replace(/\n{2,}/g, '\n') // Remove excessive new lines (if any)
-    .trim() : undefined;
-  return {
-    [COLUMNS.NAME.prom]: torgsoftProduct[COLUMNS.NAME.torgsoft],
-    [COLUMNS.NAME_UKR.prom]: torgsoftProduct[COLUMNS.NAME.torgsoft],
-    [COLUMNS.DESCRIPTIONS.prom]: description,
-    [COLUMNS.DESCRIPTIONS_UKR.prom]: description,
-    [COLUMNS.PRICE.prom]: price,
-    [COLUMNS.UNIT_OF_MEASUREMENT.prom]: unitOfMeasurement,
-    [COLUMNS.LINK_TO_IMAGE.prom]: linkToImage,
-    [COLUMNS.QUANTITY.prom]: quantity,
-    [COLUMNS.EXTERNAL_ID.prom]: torgsoftProduct[COLUMNS.EXTERNAL_ID.torgsoft],
-    [COLUMNS.MANUFACTURER.prom]: torgsoftProduct[COLUMNS.MANUFACTURER.torgsoft] !== 'НЕТ ИНФОРМАЦИИ' ? torgsoftProduct[COLUMNS.MANUFACTURER.torgsoft] : '',
-    [COLUMNS.COUNTRY.prom]: torgsoftProduct[COLUMNS.COUNTRY.torgsoft] !== 'НЕТ ИНФОРМАЦИИ' ? torgsoftProduct[COLUMNS.COUNTRY.torgsoft] : '',
-    [COLUMNS.CURRENCY.prom]: 'UAH',
-    [COLUMNS.TYPE.prom]: Object.values(TYPES).find(type => torgsoftProduct[COLUMNS.TYPE.torgsoft].includes(type.torgsoft))?.prom,
-    [COLUMNS.GROUP_NAME.prom]: Object.values(TYPES).find(type => torgsoftProduct[COLUMNS.TYPE.torgsoft].includes(type.torgsoft))?.ua,
-    [COLUMNS.GROUP_NUMBER.prom]: Object.values(TYPES).find(type => torgsoftProduct[COLUMNS.TYPE.torgsoft].includes(type.torgsoft))?.id,
-    [COLUMNS.CELL_TYPE.prom]: 'r',
-    [COLUMNS.AVAILABILITY.prom]: quantity > 0 ? '+' : '-'
-  };
-}
 
 async function main() {
   // Find the first XLSX file in the directory
-  const files = fs.readdirSync(execDir);
-  const xlsxFile = files.find(file => file.endsWith('.xlsx'));
+  const filesOnRootLevel = fs.readdirSync(execDir);
+  const torgsoftExportFile = filesOnRootLevel.find(file => file.endsWith('.xlsx'));
 
-  if (!xlsxFile) {
+  if (!torgsoftExportFile) {
     console.error(`Не найдено ни одного XLSX файла в ${execDir}.`);
-    await waitForKeypress();
+    await waitForKeypress(true);
     process.exit(1);
   }
-
-  const torgsoftExportFilePath = path.join(execDir, xlsxFile);
-  const torgsoftProducts = readTorgsoftProducts(torgsoftExportFilePath);
-  const filteredProducts = torgsoftProducts.filter(tp => {
-    return Object.values(TYPES).map(type => type.torgsoft).some(at => tp[COLUMNS.TYPE.torgsoft].trim().includes(at));
-  });
-  console.log(`Всего продуктов: ${torgsoftProducts.length}, продуктов будет импортировано: ${filteredProducts.length}`);
-
-  if (filteredProducts.length === 0) {
-    console.log('Нет продуктов для импорта, вероятно произошла ошибка, импорт не будет выполнен\nПроверьте закрыт ли файл экспорта продуктов из Торгсофт xlsx\nПерезапустите программу после устранения ошибок.');
-    await waitForKeypress();
-    process.exit(1);
-
-  }
-  const promImportProducts = filteredProducts.map(tp => {
-    return mapToPromImportProduct(tp);
-  });
-
-  console.log('Товары с фото: ', promImportProducts.filter(p => p[COLUMNS.LINK_TO_IMAGE.prom]).length, "без фото:", promImportProducts.filter(p => !p[COLUMNS.LINK_TO_IMAGE.prom]).length);
-  console.log('Товары с описанием: ', promImportProducts.filter(p => p[COLUMNS.DESCRIPTIONS.prom]).length, "без описания:", promImportProducts.filter(p => !p[COLUMNS.DESCRIPTIONS.prom]).length);
-  console.log('Товары с фото и описанием: ', promImportProducts.filter(p => p[COLUMNS.LINK_TO_IMAGE.prom] && p[COLUMNS.DESCRIPTIONS.prom]).length);
-  console.log('Товары без фото и без описания: ', promImportProducts.filter(p => !p[COLUMNS.LINK_TO_IMAGE.prom] && !p[COLUMNS.DESCRIPTIONS.prom]).length);
-  console.log('Товары без фото но с описанием: ', promImportProducts.filter(p => !p[COLUMNS.LINK_TO_IMAGE.prom] && p[COLUMNS.DESCRIPTIONS.prom]).length);
-  console.log('Товары с фото но без описания: ', promImportProducts.filter(p => p[COLUMNS.LINK_TO_IMAGE.prom] && !p[COLUMNS.DESCRIPTIONS.prom]).length);
 
   // Create 'uploads' folder if it doesn't exist
   const uploadsDir = path.join(execDir, 'uploads');
   if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
   }
+
+  const torgsoftExportFilePath = path.join(execDir, torgsoftExportFile);
+  const torgsoftProducts = readTorgsoftProducts(torgsoftExportFilePath);
+
+  const filteredByCategoryProducts = torgsoftProducts.filter(tp => {
+    return Object.values(TYPES).map(type => type.torgsoft).some(at => tp[COLUMNS.TYPE.torgsoft].trim().includes(at));
+  });
+  console.log(`Всего продуктов: ${torgsoftProducts.length}, продуктов будет импортировано: ${filteredByCategoryProducts.length}`);
+
+  const filteredByPromCheckboxProducts = torgsoftProducts.filter(tp => tp[COLUMNS.PROM_UA.torgsoft] === '+');
+  console.log(`Продуктов с прометкой prom.ua: ${filteredByPromCheckboxProducts.length}`);
+
+  if (filteredByCategoryProducts.length === 0) {
+    console.log('Нет продуктов для импорта, вероятно произошла ошибка, импорт не будет выполнен\nПроверьте закрыт ли файл экспорта продуктов из Торгсофт xlsx\nПерезапустите программу после устранения ошибок.');
+    await waitForKeypress(true);
+    process.exit(1);
+  } else if (filteredByCategoryProducts.length < 1000) {
+    console.log(`Товаров для импорта: ${filteredByCategoryProducts.length}, вероятно не все товары присутствуют в файле (ожидается более 1000)\nПроверьте не применен ли фильтр в Торгсофт при экспорте\nЕсли да, то повторите экспорт без фильтрации, содайте новый файл и перезапустите программу.`);
+    const userResponse = await new Promise<string>((resolve) => {
+      process.stdin.resume();
+      process.stdin.setEncoding('utf8');
+      console.log('Хотите продолжить? Нажмите Д на клавиатуре, если нет, нажмите любую другую клавишу');
+      process.stdin.on('data', (data: any) => resolve(data.trim().toUpperCase()));
+    });
+
+    if (userResponse !== 'Д') {
+      try {
+        fs.unlinkSync(torgsoftExportFilePath);
+        console.log(`Файл удален: ${torgsoftExportFilePath}`);
+      } catch (error) {
+        console.error('Ошибка удаления файла:', error);
+      }
+      console.log('Импрот отменен');
+      await waitForKeypress();
+      process.exit(0);
+    } else {
+      console.log('Продолжаем импорт, если сделали ошибку, повторите процесс с новым файлом экспорта, отмените импорт файла в кабинете Prom.ua, или дождитесь окончания процесса\nТак как все товары не не найденые в текущем файле будут скрыты в prom.ua');
+    }
+  }
+
+  console.log('Логика фильтрации товаров - товары в категориях:', Object.values(TYPES).map(type => type.torgsoft).join(', '));
+
+  const difference = filteredByCategoryProducts.length - filteredByPromCheckboxProducts.length;
+  console.log(`Разница между количеством продуктов по выбраным категориям и количеством с пометкой prom.ua: ${difference}`);
+
+  const userResponse = await new Promise<string>((resolve) => {
+    process.stdin.resume();
+    process.stdin.setEncoding('utf8');
+    console.log('Хотите вывести список продуктов, которые есть в списке по категориям, но отсутствуют в списке prom.ua? Нажмите Д на клавиатуре, если нет, нажмите любую другую клавишу для продолжения');
+    process.stdin.on('data', (data: any) => resolve(data.trim().toUpperCase()));
+  });
+
+  if (userResponse === 'Д') {
+    const productsNotInProm = filteredByCategoryProducts.filter(tp => !filteredByPromCheckboxProducts.includes((cp: any) => tp[COLUMNS.NAME.torgsoft] === cp[COLUMNS.NAME.torgsoft]));
+    console.log('Продукты, которые есть в списке по категориям, но отсутствуют в списке prom.ua:');
+    productsNotInProm.forEach(product => console.log(product[COLUMNS.NAME.torgsoft]));
+  }
+
+  console.log('Товары с фото: ', filteredByCategoryProducts.filter(fp => fp[COLUMNS.LINK_TO_IMAGE.torgsoft]).length, "без фото:", filteredByCategoryProducts.filter(fp => !fp[COLUMNS.LINK_TO_IMAGE.torgsoft]).length);
+  console.log('Товары с описанием: ', filteredByCategoryProducts.filter(fp => fp[COLUMNS.DESCRIPTIONS.torgsoft]).length, "без описания:", filteredByCategoryProducts.filter(fp => !fp[COLUMNS.DESCRIPTIONS.torgsoft]).length);
+  console.log('Товары с фото и описанием: ', filteredByCategoryProducts.filter(fp => fp[COLUMNS.LINK_TO_IMAGE.torgsoft] && fp[COLUMNS.DESCRIPTIONS.torgsoft]).length);
+  console.log('Товары без фото и без описания: ', filteredByCategoryProducts.filter(fp => !fp[COLUMNS.LINK_TO_IMAGE.torgsoft] && !fp[COLUMNS.DESCRIPTIONS.torgsoft]).length);
+  console.log('Товары без фото но с описанием: ', filteredByCategoryProducts.filter(fp => !fp[COLUMNS.LINK_TO_IMAGE.torgsoft] && fp[COLUMNS.DESCRIPTIONS.torgsoft]).length);
+
   const importPromFile = path.join(uploadsDir, `import_to_prom_${formatDate()}.xlsx`);
-  try {
-    await writeToImportFile(importPromFile, promImportProducts, getGroups());
-  } catch (error) {
-    console.error('Ошибка записи в файл:', error);
-    await waitForKeypress();
-    process.exit(1);
-  }
-
-  try {
-    await importToPromByFile(importPromFile, process.env.PROM_API_TOKEN!);
-  } catch (error) {
-    await waitForKeypress();
-    process.exit(1);
-  }
-
+  await importToProm(filteredByCategoryProducts, importPromFile);
   // try {
-  //   const { token } = await login(process.env.BOLAGRO_LOGIN!, process.env.BOLAGRO_PASSWORD!);
-  //   await createCategories(Object.values(TYPES), token)
-  //   await updateProducts(promImportProducts, token)
+  //   const { token } = await login(process.env.BOLAGRO_USER!, process.env.BOLAGRO_PASSWORD!);
+  //   // await createCategories(Object.values(TYPES), token)
+  //   const { sales_channels } = await getSalesChannels(token);
+  //   const { product_categories } = await getCategories(token);
+  //   const bolagroProducts = filteredProducts.map(tp => {
+  //     return mapToBolagroImportProduct(tp, sales_channels[0].id, product_categories.find((cat: any) => cat.name === Object.values(TYPES).find(type => tp[COLUMNS.TYPE.torgsoft].includes(type.torgsoft))?.ru)!);
+  //   });
+  //   const products: any[] = await getAllProducts(token, 'external_id')
+  //   console.log(products[0])
+  //   const importBolagroFile = path.join(uploadsDir, `import_to_bolagro_${formatDate()}.csv`);
+
+  //   await writeToBolagroCsvImportFile(importBolagroFile, bolagroProducts);
+  //   await uploadProductsFile(importBolagroFile, token);
   // } catch (error) {
-  //   console.error('Ошибка обновления товаров в магазине Болагро:', error);
+  //   console.error('Ошибка обновления товаров в магазине Болагро', error);
   //   await waitForKeypress();
   //   process.exit(1);
   // }
@@ -209,6 +143,7 @@ async function main() {
     await waitForKeypress();
     process.exit(1);
   }
+  console.log('Программа завершена, нажмите любую клавишу для выхода');
   await waitForKeypress();
 }
 

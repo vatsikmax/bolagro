@@ -288,19 +288,27 @@ export default async function seedDemoData({ container }: ExecArgs) {
     input: {
       product_categories: [
         {
-          name: "Shirts",
+          name: "Семена, саженцы и рассада",
           is_active: true,
         },
         {
-          name: "Sweatshirts",
+          name: "Удобрения",
           is_active: true,
         },
         {
-          name: "Pants",
+          name: "Средства защиты растений",
           is_active: true,
         },
         {
-          name: "Merch",
+          name: "Набор для капельного орошения",
+          is_active: true,
+        },
+        {
+          name: "Пчеловодство",
+          is_active: true,
+        },
+        {
+          name: "Субстраты, компосты для растений",
           is_active: true,
         },
       ],
@@ -311,145 +319,72 @@ export default async function seedDemoData({ container }: ExecArgs) {
     input: {
       products: [
         {
-          title: "Medusa T-Shirt",
+          title: "Гарбуз Волзький сірий",
           category_ids: [
-            categoryResult.find((cat) => cat.name === "Shirts")!.id,
+            categoryResult.find((cat) => cat.name === "Семена, саженцы и рассада")!.id,
           ],
           description:
-            "Reimagine the feeling of a classic T-shirt. With our cotton T-shirts, everyday essentials no longer have to be ordinary.",
-          handle: "t-shirt",
-          weight: 400,
+            "Характеристики та опис\nНасіння Гарбуз Волзький сірий\nВага упаковка – 10 г\nСорт – середньопізній (120-125 днів)\nВиробник - Садиба центр\nГарбуз Волзький сірий - середньопізній (120-125 днів) великоплідний високоврожайний сорт універсального призначення. Рослина довгоплетиста, потужна, довжина стебла до 8 м. Плоди сплюснуті з гладкою поверхнею і легкою сегментацією, зеленувато-сірого кольору без малюнка. Вага плодів 6-9 кг. М'якуш жовто-кремовий, середньої щільності й цукристості. Врожайність 18-35 кг/м",
+          handle: "garbuz-volzkiy-siriy",
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-black-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-black-back.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-white-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-white-back.png",
+              url: "https://images.prom.ua/4827989119_w640_h640_tykva-volzhskaya-seraya.jpg",
             },
           ],
           options: [
             {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
-            },
-            {
-              title: "Color",
-              values: ["Black", "White"],
+              title: "Measurement",
+              values: ["шт."],
             },
           ],
           variants: [
             {
-              title: "S / Black",
-              sku: "SHIRT-S-BLACK",
+              title: "Пакет",
               options: {
-                Size: "S",
-                Color: "Black",
+                Measurement: "шт.",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 20,
                   currency_code: "uah",
                 },
               ],
             },
+          ],
+          sales_channels: [
             {
-              title: "S / White",
-              sku: "SHIRT-S-WHITE",
-              options: {
-                Size: "S",
-                Color: "White",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
+              id: defaultSalesChannel[0].id,
             },
+          ],
+        },
+        {
+          title: "Grandis®",
+          category_ids: [
+            categoryResult.find((cat) => cat.name === "Удобрения")!.id,
+          ],
+          description:
+            "Характеристики та опис\nОсновні\nВиробник\nКіссон\nКраїна виробник\nУкраїна\nПрепаративна форма\nПорошок\nУпаковка\nВага\n0.01 кг\nКористувальницькі характеристики\nБренд\nKisson\nКатегорія товарів: регулятори росту\nДіюча речовина: індоліл-3-масляна кислота, амінокислоти, вітаміни\nВиробник: ТД Кішонський",
+          handle: "grandis",
+          status: ProductStatus.PUBLISHED,
+          shipping_profile_id: shippingProfile.id,
+          images: [
             {
-              title: "M / Black",
-              sku: "SHIRT-M-BLACK",
-              options: {
-                Size: "M",
-                Color: "Black",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
+              url: "https://images.prom.ua/2832977764_w640_h640_grandis-10g-grandis.jpg",
             },
+          ],
+          options: [
             {
-              title: "M / White",
-              sku: "SHIRT-M-WHITE",
-              options: {
-                Size: "M",
-                Color: "White",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
+              title: "Measurement",
+              values: ["г."],
             },
+          ],
+          variants: [
             {
-              title: "L / Black",
-              sku: "SHIRT-L-BLACK",
+              title: "10",
               options: {
-                Size: "L",
-                Color: "Black",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
-            },
-            {
-              title: "L / White",
-              sku: "SHIRT-L-WHITE",
-              options: {
-                Size: "L",
-                Color: "White",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
-            },
-            {
-              title: "XL / Black",
-              sku: "SHIRT-XL-BLACK",
-              options: {
-                Size: "XL",
-                Color: "Black",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
-            },
-            {
-              title: "XL / White",
-              sku: "SHIRT-XL-WHITE",
-              options: {
-                Size: "XL",
-                Color: "White",
+                Measurement: "г.",
               },
               prices: [
                 {
@@ -466,79 +401,35 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
         },
         {
-          title: "Medusa Sweatshirt",
+          title: "Акробат 1 кг",
           category_ids: [
-            categoryResult.find((cat) => cat.name === "Sweatshirts")!.id,
+            categoryResult.find((cat) => cat.name === "Средства защиты растений")!.id,
           ],
           description:
-            "Reimagine the feeling of a classic sweatshirt. With our cotton sweatshirt, everyday essentials no longer have to be ordinary.",
-          handle: "sweatshirt",
-          weight: 400,
+            "Акробат МЦ - фунгицид системно-контактного действия. Эффективная защита овощных культур и винограда от распространенных грибковых заболеваний (фитофтороз, перено-нароз, альтернариоз, миндью). Высокая эффективность против патогенов, чувствительных к фениламидам.\nДействующее вещество: Диметоморф 90 г/кг.\nМанкоцеб 600 г/кг.\nСочетание двух компонентов способствует предотвращению резистентности у патогенных организмов.\nЛокально - системное и контактное действие на возбудителей болезни, обеспечивает надежную защиту растени.",
+          handle: "akrobat-1-kg",
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png",
+              url: "https://images.prom.ua/4810234042_w640_h640_akrobat-1kg-basf.jpg",
             },
           ],
           options: [
             {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
+              title: "Measurement",
+              values: ["кг."],
             },
           ],
           variants: [
             {
-              title: "S",
-              sku: "SWEATSHIRT-S",
+              title: "Measurement ",
               options: {
-                Size: "S",
+                Measurement: "кг.",
               },
               prices: [
                 {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
-            },
-            {
-              title: "M",
-              sku: "SWEATSHIRT-M",
-              options: {
-                Size: "M",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
-            },
-            {
-              title: "L",
-              sku: "SWEATSHIRT-L",
-              options: {
-                Size: "L",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
-            },
-            {
-              title: "XL",
-              sku: "SWEATSHIRT-XL",
-              options: {
-                Size: "XL",
-              },
-              prices: [
-                {
-                  amount: 10,
+                  amount: 1050,
                   currency_code: "uah",
                 },
               ],
@@ -551,79 +442,35 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
         },
         {
-          title: "Medusa Sweatpants",
+          title: "Аквакорм",
           category_ids: [
-            categoryResult.find((cat) => cat.name === "Pants")!.id,
+            categoryResult.find((cat) => cat.name === "Пчеловодство")!.id,
           ],
           description:
-            "Reimagine the feeling of classic sweatpants. With our cotton sweatpants, everyday essentials no longer have to be ordinary.",
-          handle: "sweatpants",
-          weight: 400,
+            "Использовать препарат стоит в весенний и летнее-осенний период , в качестве жидкого сиропа для пчел. Препарат готов к расфасовке по кормушкам, после смешивания 20 г порошка на 10 л воды. Открывать упаковку рекомендуется непосредственно перед применением препарата . Мед,  собранный с пчел, подвергавшихся воздействию “Аквакорм”-а используют в пищу на общих основаниях.",
+          handle: "akvakorm",
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatpants-gray-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatpants-gray-back.png",
+              url: "https://images.prom.ua/3467816597_w640_h640_akvakorm-podkormka-20g.jpg",
             },
           ],
           options: [
             {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
+              title: "Measurement",
+              values: ["шт."],
             },
           ],
           variants: [
             {
-              title: "S",
-              sku: "SWEATPANTS-S",
+              title: "шт.",
               options: {
-                Size: "S",
+                Measurement: "шт.",
               },
               prices: [
                 {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
-            },
-            {
-              title: "M",
-              sku: "SWEATPANTS-M",
-              options: {
-                Size: "M",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
-            },
-            {
-              title: "L",
-              sku: "SWEATPANTS-L",
-              options: {
-                Size: "L",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
-            },
-            {
-              title: "XL",
-              sku: "SWEATPANTS-XL",
-              options: {
-                Size: "XL",
-              },
-              prices: [
-                {
-                  amount: 10,
+                  amount: 25,
                   currency_code: "uah",
                 },
               ],
@@ -636,79 +483,34 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
         },
         {
-          title: "Medusa Shorts",
+          title: "Грунтосуміш для Хвойних 40л ТД Кисон",
           category_ids: [
-            categoryResult.find((cat) => cat.name === "Merch")!.id,
+            categoryResult.find((cat) => cat.name === "Субстраты, компосты для растений")!.id,
           ],
-          description:
-            "Reimagine the feeling of classic shorts. With our cotton shorts, everyday essentials no longer have to be ordinary.",
-          handle: "shorts",
-          weight: 400,
+          description: "Характеристики та опис\nКатегорія товарів: субстрати Діюча речовина: перехідний торф, низинний торф, підкислювач природного походження, натуральні ґрунтопокращуючі речовини, річковий пісок, добрива Виробник: ТД Киссон Властивості: забезпечує оптимальний рівень кислотності субстрату (pH) для хвойних рослин; забезпечує рослини необхідними елементами живлення; підвищений вміст магнію враховує індивідуальні потреби хвойних рослин в даному елементі; покращує схожість насіння, приживлюваність розсади та вкорінення саджанців; забезпечує рослини необхідними елементами живлення; підвищений вміст магнію враховує індивідуальні потреби хвойних рослин в даному елементі; покращує схожість насіння, приживлюваність розсади та вкорінення саджанців; забезпечує рослини необхідними елементами живлення; підвищений вміст магнію враховує індивідуальні потреби хвойних рослин в даному елементі; покращує схожість насіння, приживлюваність розсади та вкорінення саджанців; забезпечує рослини необхідними елементами живлення; підвищений вміст магнію враховує індивідуальні потреби хвойних рослин в даному елементі; покращує схожість насіння, приживлюваність розсади та вкорінення саджанців; забезпечує рослини необхідними елементами живлення; підвищений вміст магнію враховує індивідуальні потреби хвойних рослин в даному елементі; покращує схожість насіння, приживлюваність\nрозсади та вкорінення саджанців; забезпечує рослини необхідними елементами живлення; підвищений вміст магнію враховує індивідуальні потреби хвойних рослин в даному елементі; покращує схожість насіння, приживлюваність розсади та вкорінення саджанців; забезпечує рослини необхідними елементами живлення; підвищений вміст магнію враховує індивідуальні потреби хвойних рослин в даному елементі; покращує схожість насіння, приживлюваність розсади та вкорінення саджанців; забезпечує рослини необхідними елементами живлення; підвищений вміст магнію враховує індивідуальні потреби хвойних рослин в даному елементі; покращує схожість насіння, приживлюваність розсади та вкорінення саджанців; забезпечує рослини необхідними елементами живлення; підвищений вміст магнію враховує індивідуальні потреби хвойних рослин в даному елементі; покращує схожість на\nсіння, приживлюваність розсади та вкорінення саджанців; забезпечує рослини необхідними елементами живлення; підвищений вміст магнію враховує індивідуальні потреби хвойних рослин в даному елементі; покращує схожість насіння, приживлюваність розсади та вкорінення саджанців; забезпечує рослини необхідними елементами живлення; підвищений вміст магнію враховує індивідуальні потреби хвойних рослин в даному елементі; покращує схожість насіння, приживлюваність розсади та вкорінення саджанців; забезпечує рослини необхідними елементами живлення; підвищений вміст магнію враховує індивідуальні потреби хвойних рослин в даному елементі; покращує схожість насіння, приживлюваність розсади та вкорінення саджанців; забезпечує рослини необхідними елементами живлення; підвищений вміст магнію враховує індивідуальні потреби хвойних рослин в даному елементі",
+          handle: "gruntosumish-dlya-hvoyinih-40l-td-kison",
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/shorts-vintage-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/shorts-vintage-back.png",
+              url: "https://images.prom.ua/3467816597_w640_h640_akvakorm-podkormka-20g.jpg",
             },
           ],
           options: [
             {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
+              title: "Measurement",
+              values: ["шт."],
             },
           ],
           variants: [
             {
-              title: "S",
-              sku: "SHORTS-S",
+              title: "шт.",
               options: {
-                Size: "S",
+                Measurement: "шт.",
               },
               prices: [
                 {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
-            },
-            {
-              title: "M",
-              sku: "SHORTS-M",
-              options: {
-                Size: "M",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
-            },
-            {
-              title: "L",
-              sku: "SHORTS-L",
-              options: {
-                Size: "L",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "uah",
-                },
-              ],
-            },
-            {
-              title: "XL",
-              sku: "SHORTS-XL",
-              options: {
-                Size: "XL",
-              },
-              prices: [
-                {
-                  amount: 10,
+                  amount: 25,
                   currency_code: "uah",
                 },
               ],

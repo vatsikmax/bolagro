@@ -36,7 +36,7 @@ export function readPromProducts(promExportFilePath: string): Product[] {
   return products;
 }
 
-export async function writeToImportFile(promImportFilePath: string, products: Product[], groups: Group[]): Promise<void> {
+export async function writeToPromXlsxImportFile(promImportFilePath: string, products: Product[], groups: Group[]): Promise<void> {
   console.log('Начинаю запись в файл для импорта в Prom', promImportFilePath);
 
   // Ensure the directory exists
