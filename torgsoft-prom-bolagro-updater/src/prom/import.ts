@@ -29,14 +29,13 @@ function mapToPromImportProduct(torgsoftProduct: any) {
     [COLUMNS.MANUFACTURER.prom]: torgsoftProduct[COLUMNS.MANUFACTURER.torgsoft] !== 'НЕТ ИНФОРМАЦИИ' ? torgsoftProduct[COLUMNS.MANUFACTURER.torgsoft] : '',
     [COLUMNS.COUNTRY.prom]: torgsoftProduct[COLUMNS.COUNTRY.torgsoft] !== 'НЕТ ИНФОРМАЦИИ' ? torgsoftProduct[COLUMNS.COUNTRY.torgsoft] : '',
     [COLUMNS.CURRENCY.prom]: 'UAH',
-    [COLUMNS.TYPE.prom]: Object.values(TYPES).find(type => torgsoftProduct[COLUMNS.TYPE.torgsoft].includes(type.torgsoft))?.prom,
-    [COLUMNS.GROUP_NAME.prom]: Object.values(TYPES).find(type => torgsoftProduct[COLUMNS.TYPE.torgsoft].includes(type.torgsoft))?.ua,
-    [COLUMNS.GROUP_NUMBER.prom]: Object.values(TYPES).find(type => torgsoftProduct[COLUMNS.TYPE.torgsoft].includes(type.torgsoft))?.id,
+    [COLUMNS.TYPE.prom]: Object.values(TYPES).find(type => torgsoftProduct[COLUMNS.TYPE.torgsoft].includes(type.ru))?.prom,
+    [COLUMNS.GROUP_NAME.prom]: Object.values(TYPES).find(type => torgsoftProduct[COLUMNS.TYPE.torgsoft].includes(type.ru))?.ua,
+    [COLUMNS.GROUP_NUMBER.prom]: Object.values(TYPES).find(type => torgsoftProduct[COLUMNS.TYPE.torgsoft].includes(type.ru))?.id,
     [COLUMNS.CELL_TYPE.prom]: 'r',
     [COLUMNS.AVAILABILITY.prom]: quantity > 0 ? '+' : '-'
   };
 }
-
 
 function getGroups() {
   return Object.values(TYPES).map(type => {
@@ -61,7 +60,7 @@ export async function importToProm(filteredProducts: any, importPromFile: string
   }
 
   try {
-    await importToPromByFile(importPromFile, '3ef17956b8d9ef96362bbd2674d2b578ce39bded');
+    await importToPromByFile(importPromFile, process.env.PROM_API_TOKEN!);
   } catch (error) {
     await waitForKeypress(true);
     process.exit(1);

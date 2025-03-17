@@ -1,12 +1,12 @@
 import readline from 'readline';
 
 export const TYPES = Object.freeze({
-  SEEDS: { torgsoft: "Семена", ru: "Семена, саженцы и рассада", ua: "Насіння, саджанці та розсада", prom: "https://prom.ua/ua/Ovoschnye-kultury", id: 12102, handle: "seeds" },
-  FERTILIZERS: { torgsoft: "Удобрения", ru: "Удобрения", ua: "Добрива, загальне", prom: "https://prom.ua/ua/Udobreniya-obschee", id: 11699, handle: "fertilizers" },
-  PLAN_PROTECTION_PRODUCS: { torgsoft: "СЗР", ru: "Средства защиты растений", ua: "Засоби захисту рослин, загальне", prom: "https://prom.ua/ua/Sredstva-zaschity-rastenij-obschee", id: 11106, handle: "protection" },
-  DRIP_IRRIGATION: { torgsoft: "Капельное орошение", ru: "Набор для капельного орошения", ua: "Набори для крапельного поливу", prom: "https://prom.ua/ua/Nabory-dlya-kapelnogo", id: 1250359, handle: "irrigation" },
-  BEE_KEEPING: { torgsoft: "Пчеловодство", ru: "Пчеловодство", ua: "Бджільництво", prom: "https://prom.ua/ua/Pchelovodstvo", id: 105, handle: "beekeeping" },
-  SOILS: { torgsoft: "Грунты", ru: "Субстраты, компосты для растений", ua: "Субстрати, компости для рослин", prom: "https://prom.ua/ua/Substraty-komposty-dlya-rastenij", id: 12520, handle: "soils" },
+  SEEDS: { ru: "Семена, саженцы и рассада", ua: "Насіння, саджанці та розсада", prom: "https://prom.ua/ua/Ovoschnye-kultury", id: 12102, handle: "seeds" },
+  FERTILIZERS: { ru: "Удобрения", ua: "Добрива, загальне", prom: "https://prom.ua/ua/Udobreniya-obschee", id: 11699, handle: "fertilizers" },
+  PLAN_PROTECTION_PRODUCS: { ru: "Средства защиты растений", ua: "Засоби захисту рослин, загальне", prom: "https://prom.ua/ua/Sredstva-zaschity-rastenij-obschee", id: 11106, handle: "protection" },
+  DRIP_IRRIGATION: { ru: "Набор для капельного орошения", ua: "Набори для крапельного поливу", prom: "https://prom.ua/ua/Nabory-dlya-kapelnogo", id: 1250359, handle: "irrigation" },
+  BEE_KEEPING: { ru: "Пчеловодство", ua: "Бджільництво", prom: "https://prom.ua/ua/Pchelovodstvo", id: 105, handle: "beekeeping" },
+  SOILS: { ru: "Субстраты, компосты для растений", ua: "Субстрати, компости для рослин", prom: "https://prom.ua/ua/Substraty-komposty-dlya-rastenij", id: 12520, handle: "soils" },
 });
 
 export const COLUMNS = Object.freeze({
