@@ -16,7 +16,13 @@ const SideMenuItems = {
   Cart: "/cart",
 }
 
-const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
+const SideMenu = ({
+  regions,
+  dict,
+}: {
+  regions: HttpTypes.StoreRegion[] | null
+  dict: any
+}) => {
   const toggleState = useToggleState()
 
   return (
@@ -30,7 +36,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                   data-testid="nav-menu-button"
                   className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-ui-fg-base"
                 >
-                  Menu
+                  {dict.SideMenu.menu}
                 </Popover.Button>
               </div>
 
@@ -64,7 +70,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                               onClick={close}
                               data-testid={`${name.toLowerCase()}-link`}
                             >
-                              {name}
+                              {dict.SideMenu[name]}
                             </LocalizedClientLink>
                           </li>
                         )

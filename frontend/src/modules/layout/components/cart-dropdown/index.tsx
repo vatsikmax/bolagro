@@ -19,8 +19,10 @@ import { Fragment, useEffect, useRef, useState } from "react"
 
 const CartDropdown = ({
   cart: cartState,
+  dict,
 }: {
   cart?: HttpTypes.StoreCart | null
+  dict: any
 }) => {
   const [activeTimer, setActiveTimer] = useState<NodeJS.Timer | undefined>(
     undefined
@@ -85,7 +87,7 @@ const CartDropdown = ({
             className="hover:text-ui-fg-base"
             href="/cart"
             data-testid="nav-cart-link"
-          >{`Cart (${totalItems})`}</LocalizedClientLink>
+          >{`${dict.CartDropdown.cart} (${totalItems})`}</LocalizedClientLink>
         </PopoverButton>
         <Transition
           show={cartDropdownOpen}
@@ -151,7 +153,7 @@ const CartDropdown = ({
                                   data-testid="cart-item-quantity"
                                   data-value={item.quantity}
                                 >
-                                  Quantity: {item.quantity}
+                                  {dict.CartDropdown.quantity}: {item.quantity}
                                 </span>
                               </div>
                               <div className="flex justify-end">
@@ -168,7 +170,7 @@ const CartDropdown = ({
                             className="mt-1"
                             data-testid="cart-item-remove-button"
                           >
-                            Remove
+                            {dict.CartDropdown.remove}
                           </DeleteButton>
                         </div>
                       </div>
@@ -177,7 +179,7 @@ const CartDropdown = ({
                 <div className="p-4 flex flex-col gap-y-4 text-small-regular">
                   <div className="flex items-center justify-between">
                     <span className="text-ui-fg-base font-semibold">
-                      Subtotal{" "}
+                      {dict.CartDropdown.subtotal}{" "}
                       <span className="font-normal">(excl. taxes)</span>
                     </span>
                     <span
@@ -197,7 +199,7 @@ const CartDropdown = ({
                       size="large"
                       data-testid="go-to-cart-button"
                     >
-                      Go to cart
+                      {dict.CartDropdown.goToCart}
                     </Button>
                   </LocalizedClientLink>
                 </div>
@@ -208,12 +210,16 @@ const CartDropdown = ({
                   <div className="bg-gray-900 text-small-regular flex items-center justify-center w-6 h-6 rounded-full text-white">
                     <span>0</span>
                   </div>
-                  <span>Your shopping bag is empty.</span>
+                  <span>{dict.CartDropdown.empty}</span>
                   <div>
                     <LocalizedClientLink href="/store">
                       <>
-                        <span className="sr-only">Go to all products page</span>
-                        <Button onClick={close}>Explore products</Button>
+                        <span className="sr-only">
+                          {dict.CartDropdown.goToAllProducts}
+                        </span>
+                        <Button onClick={close}>
+                          {dict.CartDropdown.exploreProducts}
+                        </Button>
                       </>
                     </LocalizedClientLink>
                   </div>

@@ -36,8 +36,8 @@ export function readPromProducts(promExportFilePath: string): Product[] {
   return products;
 }
 
-export async function writeToImportFile(promImportFilePath: string, products: Product[], groups: Group[]): Promise<void> {
-  console.log('Починаю запис в файл', promImportFilePath);
+export async function writeToPromXlsxImportFile(promImportFilePath: string, products: Product[], groups: Group[]): Promise<void> {
+  console.log('Начинаю запись в файл для импорта в Prom', promImportFilePath);
 
   // Ensure the directory exists
   const dir = path.dirname(promImportFilePath);
@@ -51,5 +51,5 @@ export async function writeToImportFile(promImportFilePath: string, products: Pr
   xlsx.utils.book_append_sheet(workbook, exportProductsSheet, 'Export Products Sheet');
   xlsx.utils.book_append_sheet(workbook, exportGroupsSheet, 'Export Groups Sheet');
   xlsx.writeFile(workbook, promImportFilePath);
-  console.log('Запис завершено');
+  console.log('Запись окончена');
 }

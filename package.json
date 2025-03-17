@@ -6,7 +6,7 @@
     "packages": [
       "frontend",
       "backend",
-      "prom"
+      "torgsoft-prom-bolagro-updater"
     ]
   },
   "repository": {

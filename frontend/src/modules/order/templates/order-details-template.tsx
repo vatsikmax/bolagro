@@ -12,21 +12,30 @@ import React from "react"
 
 type OrderDetailsTemplateProps = {
   order: HttpTypes.StoreOrder
+  dict: {
+    OrderDetailsTemplate: {
+      orderDetails: string
+      backToOverview: string
+    }
+  }
 }
 
 const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({
   order,
+  dict,
 }) => {
   return (
     <div className="flex flex-col justify-center gap-y-4">
       <div className="flex gap-2 justify-between items-center">
-        <h1 className="text-2xl-semi">Order details</h1>
+        <h1 className="text-2xl-semi">
+          {dict.OrderDetailsTemplate.orderDetails}
+        </h1>
         <LocalizedClientLink
           href="/account/orders"
           className="flex gap-2 items-center text-ui-fg-subtle hover:text-ui-fg-base"
           data-testid="back-to-overview-button"
         >
-          <XMark /> Back to overview
+          <XMark /> {dict.OrderDetailsTemplate.backToOverview}
         </LocalizedClientLink>
       </div>
       <div

@@ -19,12 +19,12 @@
     "build": "medusa build",
     "seed": "medusa exec ./src/scripts/seed.ts || true",
     "start": "medusa start",
-    "dev": "medusa develop",
+    "dev": "NODE_ENV=development medusa develop",
     "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
     "test:integration:modules": "TEST_TYPE=integration:modules NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit",
     "test:unit": "TEST_TYPE=unit NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit",
     "migrate": "medusa db:migrate",
-    "user:add": "medusa user --email vatsik@i.ua --password vatsik"
+    "user:add": "medusa user --email $ADMIN_MAIL --password $ADMIN_PWD || true"
   },
   "dependencies": {
     "@medusajs/admin-sdk": "2.5.0",
@@ -58,5 +58,6 @@
   },
   "engines": {
     "node": ">=22"
-  }
+  },
+  "commit": "70d2c8bd79f99ed4c0b0abaaf91e7469cbe875dc"
 }
