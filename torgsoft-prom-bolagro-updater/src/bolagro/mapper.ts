@@ -18,7 +18,97 @@ function cyrillicToHandle(title: string) {
   return transliterated.replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-').replace(/^-|-$/g, '');
 }
 
-export function mapToBolagroImportProduct(torgsoftProduct: any, salesChannelId: string, category: any) {
+export function mapToBolagroCategory(name: string) {
+  return {
+    name: name,
+    is_active: true,
+    handle: cyrillicToHandle(name),
+    is_internal: false,
+  }
+}
+
+export function mapToLocationLevel(inventoryItemId: string, locationId: string, quantity: number) {
+  return {
+    inventory_item_id: inventoryItemId,
+    location_id: locationId,
+    stocked_quantity: quantity,
+  }
+}
+
+export function mapToUpdateBolagroProduct(existingBolagroProduct: any, torgsoftProduct: any) {
+  return {
+    ...existingBolagroProduct,
+    title: torgsoftProduct[COLUMNS.NAME.torgsoft],
+    description: torgsoftProduct[COLUMNS.DESCRIPTIONS.torgsoft] ? torgsoftProduct[COLUMNS.DESCRIPTIONS.torgsoft]
+      .replace(/_x000d_/g, '')  // Remove _x000d_
+      .replace(/\r/g, '')       // Remove any leftover carriage returns
+      .replace(/\n{2,}/g, '\n') // Remove excessive new lines (if any)
+      .trim() : undefined,
+    handle: cyrillicToHandle(torgsoftProduct[COLUMNS.NAME.torgsoft]),
+    images: torgsoftProduct[COLUMNS.LINK_TO_IMAGE.torgsoft] ? [
+      {
+        url: torgsoftProduct[COLUMNS.LINK_TO_IMAGE.torgsoft]
+          .replace(/_x000d_/g, '')  // Remove _x000d_
+          .replace(/\r/g, '')       // Remove any leftover carriage returns
+          .replace(/\n{2,}/g, '\n') // Remove excessive new lines (if any)
+          .trim()
+      },
+    ] : undefined,
+  }
+}
+
+export function mapToBolagroProduct(torgsoftProduct: any, salesChannelId: string, shippingProfileId: string) {
+  return {
+    title: torgsoftProduct[COLUMNS.NAME.torgsoft],
+    // category_ids: [categoryId],
+    description: torgsoftProduct[COLUMNS.DESCRIPTIONS.torgsoft] ? torgsoftProduct[COLUMNS.DESCRIPTIONS.torgsoft]
+      .replace(/_x000d_/g, '')  // Remove _x000d_
+      .replace(/\r/g, '')       // Remove any leftover carriage returns
+      .replace(/\n{2,}/g, '\n') // Remove excessive new lines (if any)
+      .trim() : undefined,
+    handle: cyrillicToHandle(torgsoftProduct[COLUMNS.NAME.torgsoft]),
+    status: 'published',
+    shipping_profile_id: shippingProfileId,
+    external_id: torgsoftProduct[COLUMNS.EXTERNAL_ID.torgsoft].toString(),
+    images: torgsoftProduct[COLUMNS.LINK_TO_IMAGE.torgsoft] ? [
+      {
+        url: torgsoftProduct[COLUMNS.LINK_TO_IMAGE.torgsoft]
+          .replace(/_x000d_/g, '')  // Remove _x000d_
+          .replace(/\r/g, '')       // Remove any leftover carriage returns
+          .replace(/\n{2,}/g, '\n') // Remove excessive new lines (if any)
+          .trim()
+      },
+    ] : undefined,
+    options: [
+      {
+        title: "Measurement",
+        values: ["шт."],
+      },
+    ],
+    variants: [
+      {
+        manage_inventory: true,
+        title: "Пакет",
+        options: {
+          Measurement: "шт.",
+        },
+        prices: [
+          {
+            amount: typeof torgsoftProduct[COLUMNS.PRICE.torgsoft] === 'number' ? torgsoftProduct[COLUMNS.PRICE.torgsoft] : Number(torgsoftProduct[COLUMNS.PRICE.torgsoft].replace(',', '.')),
+            currency_code: "uah",
+          },
+        ],
+      },
+    ],
+    sales_channels: [
+      {
+        id: salesChannelId,
+      },
+    ],
+  }
+}
+
+export function mapToBolagroImportProductCsv(torgsoftProduct: any, salesChannelId: string, category: any) {
   try {
     return {
       "Product Id": undefined,
@@ -73,8 +163,6 @@ export function mapToBolagroImportProduct(torgsoftProduct: any, salesChannelId: 
       "Product Sales Channel 1": salesChannelId,
       "Image 1 Url": undefined,
       "Image 2 Url": undefined,
-      "Product Category Name": category.name,
-      "Product Category Handle": category.handle,
     }
   } catch (error: any) {
     console.error('Ошибка маппинга товара:', error.message);
