@@ -12,7 +12,8 @@
     "Cart": "Cart"
   },
   "Store": {
-    "allProducts": "All products"
+    "allProducts": "All products",
+    "gardeningStore": "Gardening Store"
   },
   "CartDropdown": {
     "quantity": "Quantity",
@@ -74,7 +75,20 @@
     "alreadyAMember": "Already a member?",
     "signIn": "Sign in"
   },
+  "ShippingAddress": {
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "Shipping": {
+    "delivery": "Delivery",
+    "continueToPayment": "Continue to payment"
+  },
   "Addresses": {
+    "continueToDelivery": "Continue to delivery",
+    "edit": "Edit",
+    "yourContactDetails": "Your contact details",
     "shippingAddress": "Shipping Addresses",
     "viewAndUpdate": "View and update your shipping addresses, you can add as many as you like. Saving your addresses will make them available during checkout."
   },
@@ -89,5 +103,20 @@
     "nothingToSeeHere": "Nothing to see here",
     "youDontHaveAnyOrders": "You don't have any orders yet, let us change that",
     "continueShopping": "Continue shopping"
+  },
+  "Payment": {
+    "payment": "Payment",
+    "edit": "Edit",
+    "paymentMethod": "Payment method",
+    "paymentDetails": "Payment details"
+  },
+  "NotFound": {
+    "pageNotFound": "Page not found",
+    "goToMain": "Go to main page",
+    "pageDoesNotExist": "The page you tried to access does not exist."
+  },
+  "CheckoutLayout": {
+    "backToShoppingCart": "Back to shopping cart",
+    "back": "Back"
   }
 }

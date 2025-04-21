@@ -12,7 +12,8 @@
     "Cart": "Кошик"
   },
   "Store": {
-    "allProducts": "Всі товари"
+    "allProducts": "Всі товари",
+    "gardeningStore": "Mагазин садівництва"
   },
   "CartDropdown": {
     "quantity": "Кількість",
@@ -74,7 +75,20 @@
     "alreadyAMember": "Вже є учасником?",
     "signIn": "Увійти"
   },
+  "ShippingAddress": {
+    "firstName": "Ім'я",
+    "lastName": "Прізвище",
+    "email": "Електронна пошта",
+    "phone": "Телефон"
+  },
+  "Shipping": {
+    "delivery": "Доставка",
+    "continueToPayment": "Продовжити: оплата"
+  },
   "Addresses": {
+    "continueToDelivery": "Продовжити: доставка",
+    "edit": "Редагувати",
+    "yourContactDetails": "Ваші контактні дані",
     "shippingAddress": "Адреси доставки",
     "viewAndUpdate": "Перегляньте та оновіть свої адреси доставки, ви можете додати декілька адрес. Збережені адреси будуть доступні під час оформлення замовлення."
   },
@@ -89,5 +103,20 @@
     "nothingToSeeHere": "Тут нічого немає",
     "youDontHaveAnyOrders": "У вас ще немає замовлень, давайте змінимо це",
     "continueShopping": "Продовжити покупки"
+  },
+  "Payment": {
+    "payment": "Оплата",
+    "edit": "Редагувати",
+    "paymentMethod": "Спосіб оплати",
+    "paymentDetails": "Деталі оплати"
+  },
+  "NotFound": {
+    "pageNotFound": "Сторінка не знайдена",
+    "goToMain": "Перейти на головну сторінку",
+    "pageDoesNotExist": "Сторінка яку ви намагаєтесь відкрити, не існує."
+  },
+  "CheckoutLayout": {
+    "backToShoppingCart": "Повернутися до кошика",
+    "back": "Назад"
   }
 }

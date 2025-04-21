@@ -12,7 +12,8 @@
     "Cart": "Coș"
   },
   "Store": {
-    "allProducts": "Toate produsele"
+    "allProducts": "Toate produsele",
+    "gardeningStore": "Magazin de grădinărit"
   },
   "CartDropdown": {
     "quantity": "Cantitate",
@@ -74,7 +75,20 @@
     "alreadyAMember": "Ești deja membru?",
     "signIn": "Conectează-te"
   },
+  "ShippingAddress": {
+    "firstName": "Nume",
+    "lastName": "Prenume",
+    "email": "Email",
+    "phone": "Telefon"
+  },
+  "Shipping": {
+    "delivery": "Livrare",
+    "shippingAddress": "Adresă de livrare"
+  },
   "Addresses": {
+    "continueToDelivery": "Continuă: livrare",
+    "edit": "Editează",
+    "yourContactDetails": "Detaliile tale de contact",
     "shippingAddress": "Adrese de livrare",
     "viewAndUpdate": "Vizualizează și actualizează adresele tale de livrare, poți adăuga mai multe adrese. Adresele salvate vor fi disponibile la finalizarea comenzii."
   },
@@ -89,5 +103,20 @@
     "nothingToSeeHere": "Nimic de văzut aici",
     "youDontHaveAnyOrders": "Nu ai nicio comandă încă, să schimbăm asta",
     "continueShopping": "Continuă cumpărăturile"
+  },
+  "Payment": {
+    "payment": "Plată",
+    "edit": "Editează",
+    "paymentMethod": "Metodă de plată",
+    "paymentDetails": "Detalii de plată"
+  },
+  "NotFound": {
+    "pageNotFound": "Pagina nu a fost găsită",
+    "goToMain": "Mergi la pagina principală",
+    "pageDoesNotExist": "Pagina pe care încerci să o accesezi nu există."
+  },
+  "CheckoutLayout": {
+    "backToShoppingCart": "Înapoi la coș",
+    "back": "Înapoi"
   }
 }

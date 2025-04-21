@@ -1,12 +1,18 @@
+import { getDictionary } from "@lib/dictionary"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import ChevronDown from "@modules/common/icons/chevron-down"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
+import { headers } from "next/headers"
 
-export default function CheckoutLayout({
+export default async function CheckoutLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const headersList = await headers()
+  const lang = headersList.get("x-language") || "ua" // Get language from middleware
+  const dict: any = await getDictionary(lang as any)
+
   return (
     <div className="w-full bg-white relative small:min-h-screen">
       <div className="h-16 bg-white border-b ">
@@ -18,10 +24,10 @@ export default function CheckoutLayout({
           >
             <ChevronDown className="rotate-90" size={16} />
             <span className="mt-px hidden small:block txt-compact-plus text-ui-fg-subtle hover:text-ui-fg-base ">
-              Back to shopping cart
+              {dict.CheckoutLayout.backToShoppingCart}
             </span>
             <span className="mt-px block small:hidden txt-compact-plus text-ui-fg-subtle hover:text-ui-fg-base">
-              Back
+              {dict.CheckoutLayout.back}
             </span>
           </LocalizedClientLink>
           <LocalizedClientLink
@@ -29,12 +35,14 @@ export default function CheckoutLayout({
             className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
             data-testid="store-link"
           >
-            Medusa Store
+            {dict.Nav.name}
           </LocalizedClientLink>
           <div className="flex-1 basis-0" />
         </nav>
       </div>
-      <div className="relative" data-testid="checkout-container">{children}</div>
+      <div className="relative" data-testid="checkout-container">
+        {children}
+      </div>
       <div className="py-4 w-full flex items-center justify-center">
         <MedusaCTA />
       </div>

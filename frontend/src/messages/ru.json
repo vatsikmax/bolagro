@@ -12,7 +12,8 @@
     "Cart": "Корзина"
   },
   "Store": {
-    "allProducts": "Все товары"
+    "allProducts": "Все товары",
+    "gardeningStore": "Магазин садоводства"
   },
   "CartDropdown": {
     "quantity": "Количество",
@@ -74,7 +75,20 @@
     "alreadyAMember": "Уже участник?",
     "signIn": "Войти"
   },
+  "ShippingAddress": {
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "email": "Электронная почта",
+    "phone": "Телефон"
+  },
+  "Shipping": {
+    "delivery": "Доставка",
+    "continueToPayment": "Продолжить: оплата"
+  },
   "Addresses": {
+    "continueToDelivery": "Продолжить: доставка",
+    "edit": "Редактировать",
+    "yourContactDetails": "Ваши контактные данные",
     "shippingAddress": "Адреса доставки",
     "viewAndUpdate": "Просмотрите и обновите свои адреса доставки, вы можете добавить несколько адресов. Сохраненные адреса будут доступны при оформлении заказа."
   },
@@ -89,5 +103,20 @@
     "nothingToSeeHere": "Здесь ничего нет",
     "youDontHaveAnyOrders": "У вас еще нет заказов, давайте изменим это",
     "continueShopping": "Продолжить покупки"
+  },
+  "Payment": {
+    "payment": "Оплата",
+    "edit": "Редактировать",
+    "paymentMethod": "Способ оплаты",
+    "paymentDetails": "Детали оплаты"
+  },
+  "NotFound": {
+    "pageNotFound": "Страница не найдена",
+    "goToMain": "Перейти на главную страницу",
+    "pageDoesNotExist": "Страница, которую вы пытаетесь открыть, не существует."
+  },
+  "CheckoutLayout": {
+    "backToShoppingCart": "Вернуться в корзину",
+    "back": "Назад"
   }
 }

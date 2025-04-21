@@ -332,19 +332,26 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
       shipping_address: {
         first_name: formData.get("shipping_address.first_name"),
         last_name: formData.get("shipping_address.last_name"),
-        address_1: formData.get("shipping_address.address_1"),
-        address_2: "",
-        company: formData.get("shipping_address.company"),
-        postal_code: formData.get("shipping_address.postal_code"),
-        city: formData.get("shipping_address.city"),
-        country_code: formData.get("shipping_address.country_code"),
-        province: formData.get("shipping_address.province"),
         phone: formData.get("shipping_address.phone"),
+        //use fake address details
+        // address_1: formData.get("shipping_address.address_1"),
+        address_1: "any",
+        address_2: "",
+        // company: formData.get("shipping_address.company"),
+        company: "any",
+        // postal_code: formData.get("shipping_address.postal_code"),
+        postal_code: "any",
+        // city: formData.get("shipping_address.city"),
+        city: "any",
+        // country_code: formData.get("shipping_address.country_code"),
+        country_code: "ua",
+        // province: formData.get("shipping_address.province"),
+        province: "any",
       },
       email: formData.get("email"),
     } as any
 
-    const sameAsBilling = formData.get("same_as_billing")
+    const sameAsBilling = "on"//formData.get("same_as_billing")
     if (sameAsBilling === "on") data.billing_address = data.shipping_address
 
     if (sameAsBilling !== "on")
