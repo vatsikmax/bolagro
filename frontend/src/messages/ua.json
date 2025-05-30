@@ -83,7 +83,9 @@
   },
   "Shipping": {
     "delivery": "Доставка",
-    "continueToPayment": "Продовжити: оплата"
+    "continueToPayment": "Продовжити: оплата",
+    "edit": "Редагувати",
+    "method": "Спосіб"
   },
   "Addresses": {
     "continueToDelivery": "Продовжити: доставка",
@@ -97,6 +99,7 @@
     "backToOverview": "Повернутися до огляду"
   },
   "Orders": {
+    "orders": "Замовлення",
     "viewPreviousOrders": "Переглянути попередні замовлення і їх статуси. Ви також можете створити повернення або обмін Вашого замовлення якщо необхідно."
   },
   "OrderOverview": {
@@ -108,15 +111,121 @@
     "payment": "Оплата",
     "edit": "Редагувати",
     "paymentMethod": "Спосіб оплати",
-    "paymentDetails": "Деталі оплати"
+    "paymentDetails": "Деталі оплати",
+    "enterCardDetails": "Введіть деталі картки",
+    "continueToReview": "Продовжити до замовлення"
   },
   "NotFound": {
     "pageNotFound": "Сторінка не знайдена",
     "goToMain": "Перейти на головну сторінку",
-    "pageDoesNotExist": "Сторінка яку ви намагаєтесь відкрити, не існує."
+    "pageDoesNotExist": "Сторінка яку ви намагаєтесь відкрити, не існує.",
+    "cartDoesNotExist": "Кошик, який ви намагаєтеся відкрити, не існує. Очистіть cookies і спробуйте ще раз."
   },
   "CheckoutLayout": {
     "backToShoppingCart": "Повернутися до кошика",
     "back": "Назад"
+  },
+  "ShippingDetails": {
+    "delivery": "Доставка",
+    "shippingAddress": "Адреса доставки",
+    "locality": "Населений пункт",
+    "contact": "Контакт",
+    "shippingMethod": "Спосіб доставки"
+  },
+  "OrderCompletedTemplate": {
+    "thankYou": "Дякуємо!",
+    "yourOrderWasPlacedSuccessfully": "Ваше замовлення було успішно оформлено.",
+    "summary": "Підсумок"
+  },
+  "OrderDetails": {
+    "confirmationEmailMessage": "Ми надіслали деталі підтвердження замовлення на",
+    "orderDate": "Дата замовлення",
+    "orderNumber": "Номер замовлення",
+    "orderStatus": "Статус замовлення",
+    "paymentStatus": "Статус оплати"
+  },
+  "PaymentDetails": {
+    "payment": "Оплата",
+    "paymentMethod": "Спосіб оплати",
+    "paymentDetails": "Деталі оплати",
+    "paidAt": "оплачено"
+  },
+  "AccountLayout": {
+    "gotQuestions": "Є питання?",
+    "customerServicePage": "Ви можете знайти поширені запитання та відповіді на нашій сторінці служби підтримки.",
+    "customerServiceLink": "Служба підтримки"
+  },
+  "Footer": {
+    "categories": "Категорії",
+    "collections": "Колекції",
+    "ourLocation": "Наша локація"
+  },
+  "Overview": {
+    "hello": "Привіт",
+    "signedInAs": "Увійшли як",
+    "profile": "Профіль",
+    "completed": "Заповнено",
+    "addresses": "Адреси",
+    "saved": "Збережено",
+    "recentOrders": "Останні замовлення",
+    "datePlaced": "Дата розміщення",
+    "orderNumber": "Номер замовлення",
+    "totalAmount": "Загальна сума",
+    "goToOrder": "Перейти до замовлення",
+    "noRecentOrders": "Немає останніх замовлень"
+  },
+  "AccountNav": {
+    "account": "Акаунт",
+    "hello": "Привіт",
+    "profile": "Профіль",
+    "addresses": "Адреси",
+    "orders": "Замовлення",
+    "logOut": "Вийти",
+    "overview": "Огляд"
+  },
+  "TransferRequestForm": {
+    "orderId": "Номер замовлення",
+    "orderTransfers": "Трасфер замовлення",
+    "cantFindOrder": "Не можете знайти замовлення, яке шукаєте?",
+    "connectOrder": "Підключити замовлення до вашого акаунту.",
+    "requestTransfer": "Запросити трансфер",
+    "transferForOrder": "Трансфер для замовлення",
+    "requested": "запитано",
+    "transferRequestEmailSentTo": "Запит на трансфер електронною поштою надіслано на"
+  },
+  "SortProducts": {
+    "latestArrivals": "Останні надходження",
+    "priceLowToHigh": "Ціна: низька -> висока",
+    "priceHighToLow": "Ціна: висока -> низька",
+    "sortBy": "Сортувати"
+  },
+  "RelatedProducts": {
+    "relatedProducts": "Схожі товари",
+    "checkThose": "You можете також переглянути ці товари."
+  },
+  "ProductActions": {
+    "selectVariant": "Виберіть варіант",
+    "addToCart": "Додати в кошик",
+    "outOfStock": "Немає в наявності",
+    "selectOptions": "Виберіть опції"
+  },
+  "ItemsTemplate": {
+    "quantity": "Кількість",
+    "price": "Ціна",
+    "total": "Всього",
+    "cart": "Кошик",
+    "item": "Товар"
+  },
+  "Review": {
+    "review": "Замовити",
+    "aggreeToTerms": "Натискаючи на кнопку Замовити, ви підтверджуєте, що ознайомились, зрозуміли та приймаєте наші Правила Користування, Правила покупок та Повернень і підтверджуєте що Ви прочитали та приймаєте нашу Політику Конфіденційності."
+  },
+  "ManualTestPaymentButton": {
+    "placeOrder": "Замовити"
+  },
+  "Help": {
+    "needHelp": "Потрібна допомога?",
+    "contact": "Зв'язатися",
+    "returnAndExchanges": "Повернення та обміни"
   }
 }

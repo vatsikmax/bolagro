@@ -199,8 +199,8 @@ const Payment = ({
             data-testid="submit-payment-button"
           >
             {!activeSession && isStripeFunc(selectedPaymentMethod)
-              ? " Enter card details"
-              : "Continue to review"}
+              ? dict.Payment.enterCardDetails
+              : dict.Payment.continueToReview}
           </Button>
         </div>
 

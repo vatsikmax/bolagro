@@ -19,9 +19,9 @@ const CheckoutSummary = ({ cart, dict }: { cart: any; dict: any }) => {
         <Divider className="my-6" />
         <CartTotals totals={cart} dict={dict} />
         <ItemsPreviewTemplate cart={cart} />
-        <div className="my-6">
+        {/* <div className="my-6">
           <DiscountCode cart={cart} />
-        </div>
+        </div> */}
       </div>
     </div>
   )

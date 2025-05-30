@@ -9766,9 +9766,6 @@ __metadata:
 "bolagro@workspace:.":
   version: 0.0.0-use.local
   resolution: "bolagro@workspace:."
-  dependencies:
-    "@types/json2csv": "npm:^5.0.7"
-    json2csv: "npm:^6.0.0-alpha.2"
   languageName: unknown
   linkType: soft
 

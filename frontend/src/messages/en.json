@@ -83,7 +83,9 @@
   },
   "Shipping": {
     "delivery": "Delivery",
-    "continueToPayment": "Continue to payment"
+    "continueToPayment": "Continue to payment",
+    "edit": "Edit",
+    "method": "Method"
   },
   "Addresses": {
     "continueToDelivery": "Continue to delivery",
@@ -97,6 +99,7 @@
     "backToOverview": "Back to overview"
   },
   "Orders": {
+    "orders": "Orders",
     "viewPreviousOrders": "View your previous orders and their status. You can also create returns or exchanges for your orders if needed."
   },
   "OrderOverview": {
@@ -108,15 +111,121 @@
     "payment": "Payment",
     "edit": "Edit",
     "paymentMethod": "Payment method",
-    "paymentDetails": "Payment details"
+    "paymentDetails": "Payment details",
+    "enterCardDetails": "Enter card details",
+    "continueToReview": "Continue to review"
   },
   "NotFound": {
     "pageNotFound": "Page not found",
     "goToMain": "Go to main page",
-    "pageDoesNotExist": "The page you tried to access does not exist."
+    "pageDoesNotExist": "The page you tried to access does not exist.",
+    "cartDoesNotExist": "The cart you tried to access does not exist. Clear your cookies and try again."
   },
   "CheckoutLayout": {
     "backToShoppingCart": "Back to shopping cart",
     "back": "Back"
+  },
+  "ShippingDetails": {
+    "delivery": "Delivery",
+    "shippingAddress": "Shipping address",
+    "locality": "Locality",
+    "contact": "Contact",
+    "shippingMethod": "Shipping method"
+  },
+  "OrderCompletedTemplate": {
+    "thankYou": "Thank you!",
+    "yourOrderWasPlacedSuccessfully": "Your order was placed successfully.",
+    "summary": "Summary"
+  },
+  "OrderDetails": {
+    "confirmationEmailMessage": "We have sent the order confirmation details to",
+    "orderDate": "Order date",
+    "orderNumber": "Order number",
+    "orderStatus": "Order status",
+    "paymentStatus": "Payment status"
+  },
+  "PaymentDetails": {
+    "payment": "Payment",
+    "paymentMethod": "Payment method",
+    "paymentDetails": "Payment details",
+    "paidAt": "paid at"
+  },
+  "AccountLayout": {
+    "gotQuestions": "Got questions?",
+    "customerServicePage": "You can find frequently asked questions and answers on our customer service page.",
+    "customerServiceLink": " Customer Service"
+  },
+  "Footer": {
+    "categories": "Categories",
+    "collections": "Collections",
+    "ourLocation": "Our Location"
+  },
+  "Overview": {
+    "hello": "Hello",
+    "signedInAs": "Signed in as",
+    "profile": "Profile",
+    "completed": "Completed",
+    "addresses": "Addresses",
+    "saved": "Saved",
+    "recentOrders": "Recent orders",
+    "datePlaced": "Date placed",
+    "orderNumber": "Order number",
+    "totalAmount": "Total amount",
+    "goToOrder": "Go to order",
+    "noRecentOrders": "No recent orders"
+  },
+  "AccountNav": {
+    "account": "Account",
+    "hello": "Hello",
+    "profile": "Profile",
+    "addresses": "Addresses",
+    "orders": "Orders",
+    "logOut": "Log out",
+    "overview": "Overview"
+  },
+  "TransferRequestForm": {
+    "orderId": "Order ID",
+    "orderTransfers": "Order transfers",
+    "cantFindOrder": "Can't find the order you are looking for?",
+    "connectOrder": " Connect an order to your account.",
+    "requestTransfer": "Request transfer",
+    "transferForOrder": "Transfer for order",
+    "requested": "requested",
+    "transferRequestEmailSentTo": "Transfer request email sent to"
+  },
+  "SortProducts": {
+    "latestArrivals": "Latest Arrivals",
+    "priceLowToHigh": "Price: Low -> High",
+    "priceHighToLow": "Price: High -> Low",
+    "sortBy": "Sort by"
+  },
+  "RelatedProducts": {
+    "relatedProducts": "Related products",
+    "checkThose": "You might also want to check out these products."
+  },
+  "ProductActions": {
+    "selectVariant": "Select variant",
+    "addToCart": "Add to cart",
+    "outOfStock": "Out of stock",
+    "selectOptions": "Select Options"
+  },
+  "ItemsTemplate": {
+    "quantity": "Quantity",
+    "price": "Price",
+    "total": "Total",
+    "cart": "Cart",
+    "item": "Item"
+  },
+  "Review": {
+    "review": "Review",
+    "aggreeToTerms": "By clicking the Place Order button, you confirm that you have read, understand and accept our Terms of Use, Terms of Sale and Returns Policy and acknowledge that you have read Bolagro Store's Privacy Policy."
+  },
+  "ManualTestPaymentButton": {
+    "placeOrder": "Place Order"
+  },
+  "Help": {
+    "needHelp": "Need help?",
+    "contact": "Contact",
+    "returnAndExchanges": "Return and Exchanges"
   }
 }

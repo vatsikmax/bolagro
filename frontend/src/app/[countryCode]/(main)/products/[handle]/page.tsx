@@ -3,6 +3,8 @@ import { notFound } from "next/navigation"
 import { listProducts } from "@lib/data/products"
 import { getRegion, listRegions } from "@lib/data/regions"
 import ProductTemplate from "@modules/products/templates"
+import { headers } from "next/headers"
+import { getDictionary } from "@lib/dictionary"
 
 type Props = {
   params: Promise<{ countryCode: string; handle: string }>
@@ -88,11 +90,16 @@ export default async function ProductPage(props: Props) {
     notFound()
   }
 
+  const headersList = await headers()
+  const lang = headersList.get("x-language") || "ua" // Get language from middleware
+  const dict: any = await getDictionary(lang as any)
+
   return (
     <ProductTemplate
       product={pricedProduct}
       region={region}
       countryCode={params.countryCode}
+      dict={dict}
     />
   )
 }

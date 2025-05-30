@@ -27,13 +27,13 @@ export default async function Orders() {
   return (
     <div className="w-full" data-testid="orders-page-wrapper">
       <div className="mb-8 flex flex-col gap-y-4">
-        <h1 className="text-2xl-semi">Orders</h1>
+        <h1 className="text-2xl-semi">{dict.Orders.orders}</h1>
         <p className="text-base-regular">{dict.Orders.viewPreviousOrders}</p>
       </div>
       <div>
         <OrderOverview orders={orders} dict={dict} />
         <Divider className="my-16" />
-        <TransferRequestForm />
+        <TransferRequestForm dict={dict} />
       </div>
     </div>
   )

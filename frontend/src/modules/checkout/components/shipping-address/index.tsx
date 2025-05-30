@@ -73,7 +73,7 @@ const ShippingAddress = ({
         "shipping_address.city": address?.first_name || "",
 
         // "shipping_address.country_code": address?.country_code || "",
-        "shipping_address.country_code": "",
+        "shipping_address.country_code": "ua",
 
         // "shipping_address.province": address?.province || "",
         "shipping_address.province": "",

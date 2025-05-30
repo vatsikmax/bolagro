@@ -20,6 +20,7 @@ type MobileActionsProps = {
   isAdding?: boolean
   show: boolean
   optionsDisabled: boolean
+  dict: any
 }
 
 const MobileActions: React.FC<MobileActionsProps> = ({
@@ -32,6 +33,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
   isAdding,
   show,
   optionsDisabled,
+  dict,
 }) => {
   const { state, open, close } = useToggleState()
 
@@ -106,7 +108,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                   <span>
                     {variant
                       ? Object.values(options).join(" / ")
-                      : "Select Options"}
+                      : dict.ProductActions.selectOptions}
                   </span>
                   <ChevronDown />
                 </div>
@@ -119,10 +121,10 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                 data-testid="mobile-cart-button"
               >
                 {!variant
-                  ? "Select variant"
+                  ? dict.ProductActions
                   : !inStock
-                  ? "Out of stock"
-                  : "Add to cart"}
+                  ? dict.ProductActions.outOfStock
+                  : dict.ProductActions.addToCart}
               </Button>
             </div>
           </div>

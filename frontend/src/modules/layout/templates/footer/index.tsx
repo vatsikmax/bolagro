@@ -1,9 +1,10 @@
 import { listCategories } from "@lib/data/categories"
 import { listCollections } from "@lib/data/collections"
-import { Text, clx } from "@medusajs/ui"
+import { getDictionary } from "@lib/dictionary"
+import { clx } from "@medusajs/ui"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import MedusaCTA from "@modules/layout/components/medusa-cta"
+import { headers } from "next/headers"
 
 export default async function Footer() {
   const { collections } = await listCollections({
@@ -11,6 +12,9 @@ export default async function Footer() {
   })
   const productCategories = await listCategories()
 
+  const headersList = await headers()
+  const lang = headersList.get("x-language") || "ua" // Get language from middleware
+  const dict: any = await getDictionary(lang as any)
   return (
     <footer className="border-t border-ui-border-base w-full">
       <div className="content-container flex flex-col w-full">
@@ -102,7 +106,9 @@ export default async function Footer() {
             )}
           </div>
           <div className="flex flex-col gap-y-2">
-            <span className="txt-small-plus txt-ui-fg-base">Our Location</span>
+            <span className="txt-small-plus txt-ui-fg-base">
+              {dict.Footer.ourLocation}
+            </span>
             <div className="w-full h-64">
               <iframe
                 className="w-full h-full border-0"

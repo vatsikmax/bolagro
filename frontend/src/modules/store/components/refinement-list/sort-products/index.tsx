@@ -8,20 +8,21 @@ type SortProductsProps = {
   sortBy: SortOptions
   setQueryParams: (name: string, value: SortOptions) => void
   "data-testid"?: string
+  dict: any
 }
 
 const sortOptions = [
   {
     value: "created_at",
-    label: "Latest Arrivals",
+    label: "latestArrivals",
   },
   {
     value: "price_asc",
-    label: "Price: Low -> High",
+    label: "priceLowToHigh",
   },
   {
     value: "price_desc",
-    label: "Price: High -> Low",
+    label: "priceHighToLow",
   },
 ]
 
@@ -29,6 +30,7 @@ const SortProducts = ({
   "data-testid": dataTestId,
   sortBy,
   setQueryParams,
+  dict,
 }: SortProductsProps) => {
   const handleChange = (value: SortOptions) => {
     setQueryParams("sortBy", value)
@@ -36,11 +38,12 @@ const SortProducts = ({
 
   return (
     <FilterRadioGroup
-      title="Sort by"
+      title={dict.SortProducts.sortBy}
       items={sortOptions}
       value={sortBy}
       handleChange={handleChange}
       data-testid={dataTestId}
+      dict={dict}
     />
   )
 }
