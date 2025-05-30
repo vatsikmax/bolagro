@@ -10,6 +10,7 @@ type FilterRadioGroupProps = {
   value: any
   handleChange: (...args: any[]) => void
   "data-testid"?: string
+  dict: any
 }
 
 const FilterRadioGroup = ({
@@ -18,6 +19,7 @@ const FilterRadioGroup = ({
   value,
   handleChange,
   "data-testid": dataTestId,
+  dict,
 }: FilterRadioGroupProps) => {
   return (
     <div className="flex gap-x-3 flex-col gap-y-3">
@@ -48,7 +50,7 @@ const FilterRadioGroup = ({
               data-testid="radio-label"
               data-active={i.value === value}
             >
-              {i.label}
+              {dict.SortProducts[i.label]}
             </Label>
           </div>
         ))}

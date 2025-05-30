@@ -12,15 +12,19 @@ import Divider from "@modules/common/components/divider"
 import MedusaRadio from "@modules/common/components/radio"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
+import NovaPoshtaForm from "./nova-poshta"
 
+const NOVA_POSHTA = "Nova Poshta"
 type ShippingProps = {
   cart: HttpTypes.StoreCart
   availableShippingMethods: HttpTypes.StoreCartShippingOption[] | null
+  dict: any
 }
 
 const Shipping: React.FC<ShippingProps> = ({
   cart,
   availableShippingMethods,
+  dict,
 }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [isLoadingPrices, setIsLoadingPrices] = useState(true)
@@ -31,6 +35,16 @@ const Shipping: React.FC<ShippingProps> = ({
   const [shippingMethodId, setShippingMethodId] = useState<string | null>(
     cart.shipping_methods?.at(-1)?.shipping_option_id || null
   )
+
+  const [selectedNovaPoshtaAddress, setSelectedNovaPoshtaAddress] = useState<{
+    town: string
+    warehouse: string
+  }>({ town: "none", warehouse: "none" })
+
+  const handleNovaPoshtaSelection = (town: string, warehouse: string) => {
+    setSelectedNovaPoshtaAddress({ town, warehouse })
+    handleSetShippingMethod(shippingMethodId as string, { town, warehouse })
+  }
 
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -68,7 +82,10 @@ const Shipping: React.FC<ShippingProps> = ({
     router.push(pathname + "?step=payment", { scroll: false })
   }
 
-  const handleSetShippingMethod = async (id: string) => {
+  const handleSetShippingMethod = async (
+    id: string,
+    data?: Record<string, unknown>
+  ) => {
     setError(null)
     let currentId: string | null = null
     setIsLoading(true)
@@ -77,7 +94,7 @@ const Shipping: React.FC<ShippingProps> = ({
       return id
     })
 
-    await setShippingMethod({ cartId: cart.id, shippingMethodId: id })
+    await setShippingMethod({ cartId: cart.id, shippingMethodId: id, data })
       .catch((err) => {
         setShippingMethodId(currentId)
         setError(err.message)
@@ -104,7 +121,7 @@ const Shipping: React.FC<ShippingProps> = ({
             }
           )}
         >
-          Delivery
+          {dict.Shipping.delivery}
           {!isOpen && (cart.shipping_methods?.length ?? 0) > 0 && (
             <CheckCircleSolid />
           )}
@@ -119,7 +136,7 @@ const Shipping: React.FC<ShippingProps> = ({
                 className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
                 data-testid="edit-delivery-button"
               >
-                Edit
+                {dict.Shipping.edit}
               </button>
             </Text>
           )}
@@ -177,6 +194,17 @@ const Shipping: React.FC<ShippingProps> = ({
                   </Radio>
                 )
               })}
+              <>
+                {availableShippingMethods?.find(
+                  (method) => method.id === shippingMethodId
+                )?.name === NOVA_POSHTA && (
+                  <NovaPoshtaForm
+                    onSelect={(town: string, warehouse: string) => {
+                      handleNovaPoshtaSelection(town, warehouse)
+                    }}
+                  />
+                )}
+              </>
             </RadioGroup>
           </div>
 
@@ -184,16 +212,20 @@ const Shipping: React.FC<ShippingProps> = ({
             error={error}
             data-testid="delivery-option-error-message"
           />
-
           <Button
             size="large"
             className="mt-6"
             onClick={handleSubmit}
             isLoading={isLoading}
-            disabled={!cart.shipping_methods?.[0]}
+            disabled={
+              !cart.shipping_methods?.[0] ||
+              (cart.shipping_methods?.[0]?.name === NOVA_POSHTA &&
+                selectedNovaPoshtaAddress.warehouse === "none")
+            }
             data-testid="submit-delivery-option-button"
           >
-            Continue to payment
+            {dict.Shipping.continueToPayment +
+              JSON.stringify(cart.shipping_methods)}
           </Button>
         </div>
       ) : (
@@ -202,12 +234,12 @@ const Shipping: React.FC<ShippingProps> = ({
             {cart && (cart.shipping_methods?.length ?? 0) > 0 && (
               <div className="flex flex-col w-1/3">
                 <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                  Method
+                  {dict.Shipping.method}
                 </Text>
                 <Text className="txt-medium text-ui-fg-subtle">
                   {cart.shipping_methods?.at(-1)?.name}{" "}
                   {convertToLocale({
-                    amount: cart.shipping_methods.at(-1)?.amount!,
+                    amount: cart.shipping_methods?.at(-1)?.amount!,
                     currency_code: cart?.currency_code,
                   })}
                 </Text>

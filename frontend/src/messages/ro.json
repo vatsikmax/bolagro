@@ -1,8 +1,8 @@
 {
   "Nav": {
-    "name": "Magazin de grădinărit Bolahro",
+    "name": "Bolahro",
     "account": "Cont",
-    "cart": "Coș (0)"
+    "cart": "Coș"
   },
   "SideMenu": {
     "menu": "Meniu",
@@ -12,7 +12,8 @@
     "Cart": "Coș"
   },
   "Store": {
-    "allProducts": "Toate produsele"
+    "allProducts": "Toate produsele",
+    "gardeningStore": "Magazin de grădinărit"
   },
   "CartDropdown": {
     "quantity": "Cantitate",
@@ -74,7 +75,24 @@
     "alreadyAMember": "Ești deja membru?",
     "signIn": "Conectează-te"
   },
+  "ShippingAddress": {
+    "firstName": "Nume",
+    "lastName": "Prenume",
+    "email": "Email",
+    "phone": "Telefon"
+  },
+  "Shipping": {
+    "delivery": "Livrare",
+    "shippingAddress": "Adresă de livrare",
+    "edit": "Editează",
+    "method": "Metodă",
+    "enterCardDetails": "Introdu detaliile cardului",
+    "continueToReview": "Continuă: revizuire"
+  },
   "Addresses": {
+    "continueToDelivery": "Continuă: livrare",
+    "edit": "Editează",
+    "yourContactDetails": "Detaliile tale de contact",
     "shippingAddress": "Adrese de livrare",
     "viewAndUpdate": "Vizualizează și actualizează adresele tale de livrare, poți adăuga mai multe adrese. Adresele salvate vor fi disponibile la finalizarea comenzii."
   },
@@ -83,11 +101,131 @@
     "backToOverview": "Înapoi la rezumat"
   },
   "Orders": {
+    "orders": "Comenzi",
     "viewPreviousOrders": "Vizualizează comenzile anterioare și starea lor. De asemenea, poți crea o returnare sau un schimb al comenzii tale dacă este necesar."
   },
   "OrderOverview": {
     "nothingToSeeHere": "Nimic de văzut aici",
     "youDontHaveAnyOrders": "Nu ai nicio comandă încă, să schimbăm asta",
     "continueShopping": "Continuă cumpărăturile"
+  },
+  "Payment": {
+    "payment": "Plată",
+    "edit": "Editează",
+    "paymentMethod": "Metodă de plată",
+    "paymentDetails": "Detalii de plată"
+  },
+  "NotFound": {
+    "pageNotFound": "Pagina nu a fost găsită",
+    "goToMain": "Mergi la pagina principală",
+    "pageDoesNotExist": "Pagina pe care încerci să o accesezi nu există.",
+    "cartDoesNotExist": "Coșul pe care încerci să îl accesezi nu există. Șterge cookie-urile și încearcă din nou."
+  },
+  "CheckoutLayout": {
+    "backToShoppingCart": "Înapoi la coș",
+    "back": "Înapoi"
+  },
+  "ShippingDetails": {
+    "deliverty": "Livrare",
+    "shippingAddress": "Adrese de livrare",
+    "locality": "Localitate",
+    "contact": "Contact",
+    "shippingMethod": "Metodă de livrare"
+  },
+  "OrderCompletedTemplate": {
+    "thankYou": "Îți mulțumim pentru comanda ta!",
+    "yourOrderWasPlacedSuccessfully": "Comanda ta a fost plasată cu succes.",
+    "summary": "Sumar"
+  },
+  "OrderDetails": {
+    "confirmationEmailMessage": "Am trimis detaliile de confirmare a comenzii la",
+    "orderDate": "Data comenzii",
+    "orderNumber": "Numărul comenzii",
+    "orderStatus": "Starea comenzii",
+    "paymentStatus": "Starea plății"
+  },
+  "PaymentDetails": {
+    "payment": "Plată",
+    "paymentMethod": "Metodă de plată",
+    "paymentDetails": "Detalii de plată",
+    "paidAt": "plătit la"
+  },
+  "AccountLayout": {
+    "gotQuestions": "Ai întrebări?",
+    "customerServicePage": "Poți găsi întrebări frecvente și răspunsuri pe pagina noastră de asistență pentru clienți.",
+    "customerServiceLink": "Asistență clienți"
+  },
+  "Footer": {
+    "categories": "Categorii",
+    "collections": "Colecții",
+    "ourLocation": "Locația noastră"
+  },
+  "Overview": {
+    "hello": "Salut",
+    "signedInAs": "Conectat ca",
+    "profile": "Profil",
+    "completed": "Completat",
+    "addresses": "Adrese",
+    "saved": "Salvat",
+    "recentOrders": "Comenzi recente",
+    "datePlaced": "Data plasării",
+    "orderNumber": "Numărul comenzii",
+    "totalAmount": "Sumă totală",
+    "goToOrder": "Du-te la comandă",
+    "noRecentOrders": "Nu ai comenzi recente"
+  },
+  "AccountNav": {
+    "account": "Cont",
+    "hello": "Salut",
+    "profile": "Profil",
+    "addresses": "Adrese",
+    "orders": "Comenzi",
+    "logOut": "Deconectare",
+    "overview": "Prezentare generală"
+  },
+  "TransferRequestForm": {
+    "orderId": "ID-ul comenzii",
+    "orderTransfers": "Transferuri de comenzi",
+    "cantFindOrder": "Nu poți găsi comanda pe care o cauți?",
+    "connectOrder": "Conectează o comandă la contul tău.",
+    "requestTransfer": "Solicită transfer",
+    "transferForOrder": "Transfer pentru comandă",
+    "requested": "solicitat",
+    "transferRequestEmailSentTo": "Email-ul de solicitare a transferului a fost trimis la"
+  },
+  "SortProducts": {
+    "latestArrivals": "O sosire recentă",
+    "priceLowToHigh": "Preț: scăzut -> ridicat",
+    "priceHighToLow": "Preț: ridicat -> scăzut",
+    "sortBy": "Sortează după"
+  },
+  "RelatedProducts": {
+    "relatedProducts": "Produse similare",
+    "checkThose": "Poate dorești să verifici și aceste produse."
+  },
+  "ProductActions": {
+    "selectVariant": "Selectează varianta",
+    "addToCart": "Adaugă în coș",
+    "outOfStock": "Stoc epuizat",
+    "selectOptions": "Selectează opțiuni"
+  },
+  "ItemsTemplate": {
+    "quantity": "Cantitate",
+    "price": "Preț",
+    "total": "Total",
+    "cart": "Coș",
+    "item": "Articol"
+  },
+  "Review": {
+    "review": "Revizuiește",
+    "aggreeToTerms": "Navigând pe site-ul nostru, ești de acord cu termenii și condițiile noastre, inclusiv politica de confidențialitate și politica de returnare. Te rugăm să le citești cu atenție înainte de a continua."
+  },
+  "ManualTestPaymentButton": {
+    "placeOrder": "Plasează comanda"
+  },
+  "Help": {
+    "needHelp": "Ai nevoie de ajutor?",
+    "contact": "Contactează-ne",
+    "returnAndExchanges": "Returnări și schimburi"
   }
 }

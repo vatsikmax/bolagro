@@ -6,6 +6,8 @@ import { listRegions } from "@lib/data/regions"
 import { StoreRegion } from "@medusajs/types"
 import CategoryTemplate from "@modules/categories/templates"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import { headers } from "next/headers"
+import { getDictionary } from "@lib/dictionary"
 
 type Props = {
   params: Promise<{ category: string[]; countryCode: string }>
@@ -74,12 +76,17 @@ export default async function CategoryPage(props: Props) {
     notFound()
   }
 
+  const headersList = await headers()
+  const lang = headersList.get("x-language") || "ua" // Get language from middleware
+  const dict: any = await getDictionary(lang as any)
+
   return (
     <CategoryTemplate
       category={productCategory}
       sortBy={sortBy}
       page={page}
       countryCode={params.countryCode}
+      dict={dict}
     />
   )
 }

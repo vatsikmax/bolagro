@@ -1,8 +1,8 @@
 {
   "Nav": {
-    "name": "Магазин садоводства Болагро",
+    "name": "Болагро",
     "account": "Аккаунт",
-    "cart": "Корзина (0)"
+    "cart": "Корзина"
   },
   "SideMenu": {
     "menu": "Меню",
@@ -12,7 +12,8 @@
     "Cart": "Корзина"
   },
   "Store": {
-    "allProducts": "Все товары"
+    "allProducts": "Все товары",
+    "gardeningStore": "Магазин садоводства"
   },
   "CartDropdown": {
     "quantity": "Количество",
@@ -74,7 +75,22 @@
     "alreadyAMember": "Уже участник?",
     "signIn": "Войти"
   },
+  "ShippingAddress": {
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "email": "Электронная почта",
+    "phone": "Телефон"
+  },
+  "Shipping": {
+    "delivery": "Доставка",
+    "continueToPayment": "Продолжить: оплата",
+    "edit": "Редактировать",
+    "method": "Способ"
+  },
   "Addresses": {
+    "continueToDelivery": "Продолжить: доставка",
+    "edit": "Редактировать",
+    "yourContactDetails": "Ваши контактные данные",
     "shippingAddress": "Адреса доставки",
     "viewAndUpdate": "Просмотрите и обновите свои адреса доставки, вы можете добавить несколько адресов. Сохраненные адреса будут доступны при оформлении заказа."
   },
@@ -83,11 +99,133 @@
     "backToOverview": "Вернуться к обзору"
   },
   "Orders": {
+    "orders": "Заказы",
     "viewPreviousOrders": "Просмотреть предыдущие заказы и их статусы. Вы также можете создать возврат или обмен вашего заказа при необходимости."
   },
   "OrderOverview": {
     "nothingToSeeHere": "Здесь ничего нет",
     "youDontHaveAnyOrders": "У вас еще нет заказов, давайте изменим это",
     "continueShopping": "Продолжить покупки"
+  },
+  "Payment": {
+    "payment": "Оплата",
+    "edit": "Редактировать",
+    "paymentMethod": "Способ оплаты",
+    "paymentDetails": "Детали оплаты",
+    "enterCardDetails": "Введите данные карты",
+    "continueToReview": "Продолжить к заказу"
+  },
+  "NotFound": {
+    "pageNotFound": "Страница не найдена",
+    "goToMain": "Перейти на главную страницу",
+    "pageDoesNotExist": "Страница, которую вы пытаетесь открыть, не существует.",
+    "cartDoesNotExist": "Корзина, которую вы пытаетесь открыть, не существует. Очистите cookies и попробуйте снова."
+  },
+  "CheckoutLayout": {
+    "backToShoppingCart": "Вернуться в корзину",
+    "back": "Назад"
+  },
+  "ShippingDetails": {
+    "delivery": "Доставка",
+    "shippingAddress": "Адрес доставки",
+    "locality": "Населенный пункт",
+    "contact": "Контакт",
+    "shippingMethod": "Способ доставки"
+  },
+  "OrderCompletedTemplate": {
+    "thankYou": "Спасибо!",
+    "yourOrderWasPlacedSuccessfully": "Ваш заказ был успешно оформлен.",
+    "summary": "Итог"
+  },
+  "OrderDetails": {
+    "confirmationEmailMessage": "Мы отправили детали подтверждения заказа на",
+    "orderDate": "Дата заказа",
+    "orderNumber": "Номер заказа",
+    "orderStatus": "Статус заказа",
+    "paymentStatus": "Статус оплаты"
+  },
+  "PaymentDetails": {
+    "payment": "Оплата",
+    "paymentMethod": "Способ оплаты",
+    "paymentDetails": "Детали оплаты",
+    "paidAt": "оплачено"
+  },
+  "AccountLayout": {
+    "gotQuestions": "Есть вопросы?",
+    "customerServicePage": "Вы можете найти часто задаваемые вопросы и ответы на нашей странице службы поддержки.",
+    "customerServiceLink": "Служба поддержки"
+  },
+  "Footer": {
+    "categories": "Категории",
+    "collections": "Коллекции",
+    "ourLocation": "Наше местоположение"
+  },
+  "Overview": {
+    "hello": "Здравствуйте",
+    "signedInAs": "Вы вошли как",
+    "profile": "Профиль",
+    "completed": "Заполнено",
+    "addresses": "Адреса",
+    "saved": "Сохранено",
+    "recentOrders": "Недавние заказы",
+    "datePlaced": "Дата размещения",
+    "orderNumber": "Номер заказа",
+    "totalAmount": "Общая сумма",
+    "goToOrder": "Перейти к заказу",
+    "noRecentOrders": "Нет недавних заказов"
+  },
+  "AccountNav": {
+    "account": "Аккаунт",
+    "hello": "Здравствуйте",
+    "profile": "Профиль",
+    "addresses": "Адреса",
+    "orders": "Заказы",
+    "logOut": "Выйти",
+    "overview": "Обзор"
+  },
+  "TransferRequestForm": {
+      "orderId": "Номер заказа",
+    "orderTransfers": "Трансфер заказа",
+    "cantFindOrder": "Не можете найти заказ, который ищете?",
+    "connectOrder": "Подключите заказ к своей учетной записи.",
+    "requestTransfer": "Запросить трансфер",
+    "transferForOrder": "Трансфер для заказа",
+    "requested": "запрошено",
+    "transferRequestEmailSentTo": "Запрос на трансфер отправлен на электронную почту"
+  },
+  "SortProducts": {
+    "latestArrivals": "Последние поступления",
+    "priceLowToHigh": "Цена: низкая -> высокая",
+    "priceHighToLow": "Цена: высокая -> низкая",
+    "sortBy": "Сортировать"
+  },
+  "RelatedProducts": {
+    "relatedProducts": "Похожие товары",
+    "checkThose": "Вы также можете посмотреть эти товары."
+  },
+  "ProductActions": {
+    "selectVariant": "Выберите вариант",
+    "addToCart": "Добавить в корзину",
+    "outOfStock": "Нет в наличии",
+    "selectOptions": "Выберите опции"
+  },
+  "ItemsTemplate": {
+    "quantity": "Количество",
+    "price": "Цена",
+    "total": "Итого",
+    "cart": "Корзина",
+    "item": "Товар"
+  },
+  "Review": {
+    "review": "Заказать",
+    "aggreeToTerms": "Нажимая кнопку Заказать, вы подтверждаете, что ознакомлены, поняли и принимаете наши Правила использования, Правила покупок и Возвратов, а также подтверждаете, что прочитали и принимаете нашу Политику конфиденциальности."
+  },
+  "ManualTestPaymentButton": {
+    "placeOrder": "Заказать"
+  },
+  "Help": {
+    "needHelp": "Нужна помощь?",
+    "contact": "Связаться",
+    "returnAndExchanges": "Возврат и обмены"
   }
 }

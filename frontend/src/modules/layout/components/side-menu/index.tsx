@@ -4,6 +4,7 @@ import { Popover, PopoverPanel, Transition } from "@headlessui/react"
 import { ArrowRightMini, XMark } from "@medusajs/icons"
 import { Text, clx, useToggleState } from "@medusajs/ui"
 import { Fragment } from "react"
+import Image from "next/image"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CountrySelect from "../country-select"
@@ -36,7 +37,13 @@ const SideMenu = ({
                   data-testid="nav-menu-button"
                   className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-ui-fg-base"
                 >
-                  {dict.SideMenu.menu}
+                  <Image
+                    src="/images/icons8-menu-50.png"
+                    alt="Menu"
+                    width={32}
+                    height={32}
+                    className="h-6 w-6"
+                  />
                 </Popover.Button>
               </div>
 
@@ -95,10 +102,6 @@ const SideMenu = ({
                           )}
                         />
                       </div>
-                      <Text className="flex justify-between txt-compact-small">
-                        © {new Date().getFullYear()} Medusa Store. All rights
-                        reserved.
-                      </Text>
                     </div>
                   </div>
                 </PopoverPanel>

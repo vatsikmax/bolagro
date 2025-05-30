@@ -42,11 +42,11 @@ const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({
         className="flex flex-col gap-4 h-full bg-white w-full"
         data-testid="order-details-container"
       >
-        <OrderDetails order={order} showStatus />
+        <OrderDetails order={order} dict={dict} showStatus />
         <Items order={order} />
-        <ShippingDetails order={order} />
-        <OrderSummary order={order} />
-        <Help />
+        <ShippingDetails order={order} dict={dict} />
+        <OrderSummary order={order} dict={dict} />
+        <Help dict={dict}/>
       </div>
     </div>
   )

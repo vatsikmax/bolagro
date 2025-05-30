@@ -6,13 +6,14 @@ import Divider from "@modules/common/components/divider"
 
 type ShippingDetailsProps = {
   order: HttpTypes.StoreOrder
+  dict: any
 }
 
-const ShippingDetails = ({ order }: ShippingDetailsProps) => {
+const ShippingDetails = ({ order, dict }: ShippingDetailsProps) => {
   return (
     <div>
       <Heading level="h2" className="flex flex-row text-3xl-regular my-6">
-        Delivery
+        {dict.ShippingDetails.delivery}
       </Heading>
       <div className="flex items-start gap-x-8">
         <div
@@ -20,22 +21,29 @@ const ShippingDetails = ({ order }: ShippingDetailsProps) => {
           data-testid="shipping-address-summary"
         >
           <Text className="txt-medium-plus text-ui-fg-base mb-1">
-            Shipping Address
+            {dict.ShippingDetails.shippingAddress}:
           </Text>
           <Text className="txt-medium text-ui-fg-subtle">
             {order.shipping_address?.first_name}{" "}
             {order.shipping_address?.last_name}
           </Text>
-          <Text className="txt-medium text-ui-fg-subtle">
+          {/* <Text className="txt-medium text-ui-fg-subtle">
             {order.shipping_address?.address_1}{" "}
             {order.shipping_address?.address_2}
           </Text>
           <Text className="txt-medium text-ui-fg-subtle">
             {order.shipping_address?.postal_code},{" "}
             {order.shipping_address?.city}
+          </Text> */}
+          {/* <Text className="txt-medium text-ui-fg-subtle">
+            {order.shipping_address?.country_code?.toUpperCase()}
+          </Text> */}
+          <Text className="txt-medium text-ui-fg-subtle">
+            {dict.ShippingDetails.locality}:{" "}
+            {String(order.shipping_methods?.[0]?.data?.town ?? "")}
           </Text>
           <Text className="txt-medium text-ui-fg-subtle">
-            {order.shipping_address?.country_code?.toUpperCase()}
+            {String(order.shipping_methods?.[0]?.data?.warehouse ?? "")}
           </Text>
         </div>
 
@@ -43,7 +51,9 @@ const ShippingDetails = ({ order }: ShippingDetailsProps) => {
           className="flex flex-col w-1/3 "
           data-testid="shipping-contact-summary"
         >
-          <Text className="txt-medium-plus text-ui-fg-base mb-1">Contact</Text>
+          <Text className="txt-medium-plus text-ui-fg-base mb-1">
+            {dict.ShippingDetails.contact}
+          </Text>
           <Text className="txt-medium text-ui-fg-subtle">
             {order.shipping_address?.phone}
           </Text>
@@ -54,16 +64,20 @@ const ShippingDetails = ({ order }: ShippingDetailsProps) => {
           className="flex flex-col w-1/3"
           data-testid="shipping-method-summary"
         >
-          <Text className="txt-medium-plus text-ui-fg-base mb-1">Method</Text>
+          <Text className="txt-medium-plus text-ui-fg-base mb-1">
+            {dict.ShippingDetails.shippingMethod}
+          </Text>
           <Text className="txt-medium text-ui-fg-subtle">
-            {(order as any).shipping_methods[0]?.name} (
+            {(order as any).shipping_methods[0]?.name}
+            {/* Disabling delivery cost */}
+            {/* (
             {convertToLocale({
               amount: order.shipping_methods?.[0].total ?? 0,
               currency_code: order.currency_code,
             })
               .replace(/,/g, "")
               .replace(/\./g, ",")}
-            )
+            ) */}
           </Text>
         </div>
       </div>

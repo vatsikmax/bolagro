@@ -3,9 +3,10 @@ import { HttpTypes } from "@medusajs/types"
 
 type OrderSummaryProps = {
   order: HttpTypes.StoreOrder
+  dict: any
 }
 
-const OrderSummary = ({ order }: OrderSummaryProps) => {
+const OrderSummary = ({ order, dict }: OrderSummaryProps) => {
   const getAmount = (amount?: number | null) => {
     if (!amount) {
       return

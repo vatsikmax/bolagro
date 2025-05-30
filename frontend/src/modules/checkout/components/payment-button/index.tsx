@@ -11,11 +11,13 @@ import ErrorMessage from "../error-message"
 type PaymentButtonProps = {
   cart: HttpTypes.StoreCart
   "data-testid": string
+  dict: any
 }
 
 const PaymentButton: React.FC<PaymentButtonProps> = ({
   cart,
   "data-testid": dataTestId,
+  dict,
 }) => {
   const notReady =
     !cart ||
@@ -37,7 +39,11 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       )
     case isManual(paymentSession?.provider_id):
       return (
-        <ManualTestPaymentButton notReady={notReady} data-testid={dataTestId} />
+        <ManualTestPaymentButton
+          notReady={notReady}
+          data-testid={dataTestId}
+          dict={dict}
+        />
       )
     default:
       return <Button disabled>Select a payment method</Button>
@@ -151,10 +157,15 @@ const StripePaymentButton = ({
   )
 }
 
-const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
+const ManualTestPaymentButton = ({
+  notReady,
+  dict,
+}: {
+  notReady: boolean
+  dict: any
+}) => {
   const [submitting, setSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
-
   const onPaymentCompleted = async () => {
     await placeOrder()
       .catch((err) => {
@@ -180,7 +191,7 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
         size="large"
         data-testid="submit-order-button"
       >
-        Place order
+        {dict.ManualTestPaymentButton.placeOrder}
       </Button>
       <ErrorMessage
         error={errorMessage}

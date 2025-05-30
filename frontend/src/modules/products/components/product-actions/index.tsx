@@ -16,6 +16,7 @@ type ProductActionsProps = {
   product: HttpTypes.StoreProduct
   region: HttpTypes.StoreRegion
   disabled?: boolean
+  dict: any
 }
 
 const optionsAsKeymap = (
@@ -30,6 +31,7 @@ const optionsAsKeymap = (
 export default function ProductActions({
   product,
   disabled,
+  dict,
 }: ProductActionsProps) {
   const [options, setOptions] = useState<Record<string, string | undefined>>({})
   const [isAdding, setIsAdding] = useState(false)
@@ -155,10 +157,10 @@ export default function ProductActions({
           data-testid="add-product-button"
         >
           {!selectedVariant && !options
-            ? "Select variant"
+            ? dict.ProductActions.selectVariant
             : !inStock || !isValidVariant
-            ? "Out of stock"
-            : "Add to cart"}
+            ? dict.ProductActions.outOfStock
+            : dict.ProductActions.addToCart}
         </Button>
         <MobileActions
           product={product}
@@ -170,6 +172,7 @@ export default function ProductActions({
           isAdding={isAdding}
           show={!inView}
           optionsDisabled={!!disabled || isAdding}
+          dict={dict}
         />
       </div>
     </>

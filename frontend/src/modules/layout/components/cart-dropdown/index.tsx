@@ -87,7 +87,9 @@ const CartDropdown = ({
             className="hover:text-ui-fg-base"
             href="/cart"
             data-testid="nav-cart-link"
-          >{`${dict.CartDropdown.cart} (${totalItems})`}</LocalizedClientLink>
+          >{`${dict.CartDropdown.cart}${
+            totalItems > 0 ? ` (${totalItems})` : ""
+          }`}</LocalizedClientLink>
         </PopoverButton>
         <Transition
           show={cartDropdownOpen}
@@ -105,7 +107,7 @@ const CartDropdown = ({
             data-testid="nav-cart-dropdown"
           >
             <div className="p-4 flex items-center justify-center">
-              <h3 className="text-large-semi">Cart</h3>
+              <h3 className="text-large-semi">{dict.CartDropdown.cart}</h3>
             </div>
             {cartState && cartState.items?.length ? (
               <>

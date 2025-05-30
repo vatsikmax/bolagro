@@ -6,6 +6,8 @@ import { listRegions } from "@lib/data/regions"
 import { StoreCollection, StoreRegion } from "@medusajs/types"
 import CollectionTemplate from "@modules/collections/templates"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import { headers } from "next/headers"
+import { getDictionary } from "@lib/dictionary"
 
 type Props = {
   params: Promise<{ handle: string; countryCode: string }>
@@ -71,6 +73,10 @@ export default async function CollectionPage(props: Props) {
   const params = await props.params
   const { sortBy, page } = searchParams
 
+  const headersList = await headers()
+  const lang = headersList.get("x-language") || "ua" // Get language from middleware
+  const dict: any = await getDictionary(lang as any)
+
   const collection = await getCollectionByHandle(params.handle).then(
     (collection: StoreCollection) => collection
   )
@@ -85,6 +91,7 @@ export default async function CollectionPage(props: Props) {
       page={page}
       sortBy={sortBy}
       countryCode={params.countryCode}
+      dict={dict}
     />
   )
 }

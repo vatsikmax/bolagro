@@ -14,13 +14,15 @@ import { HttpTypes } from "@medusajs/types"
 type ProductTemplateProps = {
   product: HttpTypes.StoreProduct
   region: HttpTypes.StoreRegion
-  countryCode: string
+  countryCode: string,
+  dict: any
 }
 
 const ProductTemplate: React.FC<ProductTemplateProps> = ({
   product,
   region,
   countryCode,
+  dict,
 }) => {
   if (!product || !product.id) {
     return notFound()
@@ -47,10 +49,11 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
                 disabled={true}
                 product={product}
                 region={region}
+                dict={dict}
               />
             }
           >
-            <ProductActionsWrapper id={product.id} region={region} />
+            <ProductActionsWrapper id={product.id} region={region} dict={dict}/>
           </Suspense>
         </div>
       </div>

@@ -7,7 +7,7 @@ import { SubmitButton } from "@modules/checkout/components/submit-button"
 import { CheckCircleMiniSolid, XCircleSolid } from "@medusajs/icons"
 import { useEffect, useState } from "react"
 
-export default function TransferRequestForm() {
+export default function TransferRequestForm({ dict }: { dict: any }) {
   const [showSuccess, setShowSuccess] = useState(false)
 
   const [state, formAction] = useActionState(createTransferRequest, {
@@ -27,11 +27,11 @@ export default function TransferRequestForm() {
       <div className="grid sm:grid-cols-2 items-center gap-x-8 gap-y-4 w-full">
         <div className="flex flex-col gap-y-1">
           <Heading level="h3" className="text-lg text-neutral-950">
-            Order transfers
+            {dict.TransferRequestForm.orderTransfers}
           </Heading>
           <Text className="text-base-regular text-neutral-500">
-            Can&apos;t find the order you are looking for?
-            <br /> Connect an order to your account.
+            {dict.TransferRequestForm.cantFindOrder}
+            <br /> {dict.TransferRequestForm.connectOrder}
           </Text>
         </div>
         <form
@@ -39,12 +39,16 @@ export default function TransferRequestForm() {
           className="flex flex-col gap-y-1 sm:items-end"
         >
           <div className="flex flex-col gap-y-2 w-full">
-            <Input className="w-full" name="order_id" placeholder="Order ID" />
+            <Input
+              className="w-full"
+              name="order_id"
+              placeholder={dict.TransferRequestForm.orderId}
+            />
             <SubmitButton
               variant="secondary"
               className="w-fit whitespace-nowrap self-end"
             >
-              Request transfer
+              {dict.TransferRequestForm.requestTransfer}
             </SubmitButton>
           </div>
         </form>
@@ -60,10 +64,12 @@ export default function TransferRequestForm() {
             <CheckCircleMiniSolid className="w-4 h-4 text-emerald-500" />
             <div className="flex flex-col gap-y-1">
               <Text className="text-medim-pl text-neutral-950">
-                Transfer for order {state.order?.id} requested
+                {dict.TransferRequestForm.transferForOrder} {state.order?.id}{" "}
+                {dict.TransferRequestForm.requested}
               </Text>
               <Text className="text-base-regular text-neutral-600">
-                Transfer request email sent to {state.order?.email}
+                {dict.TransferRequestForm.transferRequestEmailSentTo}{" "}
+                {state.order?.email}
               </Text>
             </div>
           </div>

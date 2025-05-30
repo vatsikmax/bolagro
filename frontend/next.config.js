@@ -48,6 +48,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "kisson-agro.com.ua",
       },
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "sadyba.com",
+      },
     ],
   },
 }

@@ -109,4 +109,27 @@
   .text-3xl-semi {
     @apply text-[32px] leading-[44px] font-semibold;
   }
+  
+  .header-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header-info__item {
+    margin-bottom: 8px;
+  }
+  
+  .header-info__icon {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-info__icon span {
+    width: 20px;
+    margin-right: 8px;
+  }
+  
+  .header-info__icon--email span {
+    font-size: 20px;
+  }
 }

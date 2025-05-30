@@ -2,6 +2,8 @@ import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
 import { HttpTypes } from "@medusajs/types"
 import Product from "../product-preview"
+import { headers } from "next/headers"
+import { getDictionary } from "@lib/dictionary"
 
 type RelatedProductsProps = {
   product: HttpTypes.StoreProduct
@@ -46,14 +48,18 @@ export default async function RelatedProducts({
     return null
   }
 
+  const headersList = await headers()
+  const lang = headersList.get("x-language") || "ua" // Get language from middleware
+  const dict: any = await getDictionary(lang as any)
+
   return (
     <div className="product-page-constraint">
       <div className="flex flex-col items-center text-center mb-16">
         <span className="text-base-regular text-gray-600 mb-6">
-          Related products
+          {dict.RelatedProducts.relatedProducts}
         </span>
         <p className="text-2xl-regular text-ui-fg-base max-w-lg">
-          You might also want to check out these products.
+          {dict.RelatedProducts.checkThose}
         </p>
       </div>
 
