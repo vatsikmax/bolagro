@@ -121,7 +121,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                 data-testid="mobile-cart-button"
               >
                 {!variant
-                  ? dict.ProductActions
+                  ? dict.ProductActions.selectVariant
                   : !inStock
                   ? dict.ProductActions.outOfStock
                   : dict.ProductActions.addToCart}

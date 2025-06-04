@@ -9,6 +9,7 @@ import { LocaleSwitcher } from "@modules/layout/components/locale-switcher"
 import { getDictionary } from "@lib/dictionary"
 import { headers } from "next/headers"
 import ContactInfo from "@modules/layout/components/contact-info"
+import { Search } from "@modules/common/icons/search"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
@@ -52,6 +53,14 @@ export default async function Nav() {
                 {dict.Nav.account}
               </LocalizedClientLink>
             </div>
+            <LocalizedClientLink
+              className="hover:text-ui-fg-base"
+              href="/search"
+              scroll={false}
+              qt-data-id="nav-search-link"
+            >
+              <Search />
+            </LocalizedClientLink>
             <Suspense
               fallback={
                 <LocalizedClientLink

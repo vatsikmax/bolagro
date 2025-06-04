@@ -184,7 +184,7 @@
     "overview": "Обзор"
   },
   "TransferRequestForm": {
-      "orderId": "Номер заказа",
+    "orderId": "Номер заказа",
     "orderTransfers": "Трансфер заказа",
     "cantFindOrder": "Не можете найти заказ, который ищете?",
     "connectOrder": "Подключите заказ к своей учетной записи.",
@@ -227,5 +227,41 @@
     "needHelp": "Нужна помощь?",
     "contact": "Связаться",
     "returnAndExchanges": "Возврат и обмены"
+  },
+  "ShowAll": {
+    "noResultsFound.": "Поиск не дал результатов.",
+    "viewAll.": "Просмотреть все",
+    "showingTheFirst": "Показаны первых",
+    "results": "результатов."
+  },
+  "ControlledSearchBox": {
+    "cancel": "Отмена"
+  },
+  "SearchResultsTemplate": {
+    "clear": "Очистить",
+    "noResults": "Нет результатов.",
+    "searchResultsFor": "Результаты поиска для:"
+  },
+  "SearchBox": {
+    "searchProducts": "Поиск товаров..."
+  },
+  "ProductTabs": {
+    "productInformation": "Информация о товаре",
+    "shippingAndReturns": "Доставка и возвраты"
+  },
+  "ProductInfoTab": {
+    "material": "Материал",
+    "countryOfOrigin": "Страна происхождения",
+    "type": "Тип",
+    "weight": "Вес",
+    "dimensions": "Размеры"
+  },
+  "ShippingInfoTab": {
+    "fastDelivery": "Быстрая доставка",
+    "fastDeliveryDescription": "Ваш пакет прибудет в течение 3-5 рабочих дней в ваш пункт выдачи или удобно домой.",
+    "simpleExchanges": "Простые обмены",
+    "simpleExchangesDescription": "Не подходит? Не волнуйтесь - мы обменяем ваш товар на новый.",
+    "easyReturns": "Легкие возвраты",
+    "easyReturnsDescription": "Просто верните свой товар, и мы вернем ваши деньги. Без вопросов."
   }
 }
