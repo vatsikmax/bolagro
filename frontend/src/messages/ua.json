@@ -227,5 +227,41 @@
     "needHelp": "Потрібна допомога?",
     "contact": "Зв'язатися",
     "returnAndExchanges": "Повернення та обміни"
+  },
+  "ShowAll": {
+    "noResultsFound.": "Пошук не дав результатів.",
+    "viewAll.": "Переглянути всі",
+    "showingTheFirst": "Показано перших",
+    "results": "результатів."
+  },
+  "ControlledSearchBox": {
+    "cancel": "Скасувати"
+  },
+  "SearchResultsTemplate": {
+    "clear": "Очистити",
+    "noResults": "Немає результатів.",
+    "searchResultsFor": "Результати пошуку для:"
+  },
+  "SearchBox": {
+    "searchProducts": "Пошук товарів..."
+  },
+  "ProductTabs": {
+    "productInformation": "Інформація про товар",
+    "shippingAndReturns": "Доставка та повернення"
+  },
+  "ProductInfoTab": {
+    "material": "Матеріал",
+    "countryOfOrigin": "Країна походження",
+    "type": "Тип",
+    "weight": "Вага",
+    "dimensions": "Розміри"
+  },
+  "ShippingInfoTab": {
+    "fastDelivery": "Швидка доставка",
+    "fastDeliveryDescription": "Ваш пакет прибуде протягом 3-5 робочих днів до вашого пункту видачі або зручно додому.",
+    "simpleExchanges": "Прості обміни",
+    "simpleExchangesDescription": "Не підходить? Не хвилюйтеся - ми обміняємо ваш товар на новий.",
+    "easyReturns": "Легкі повернення",
+    "easyReturnsDescription": "Просто поверніть свій товар, і ми повернемо ваші гроші. Без питань."
   }
 }

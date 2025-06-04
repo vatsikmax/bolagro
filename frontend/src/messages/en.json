@@ -227,5 +227,41 @@
     "needHelp": "Need help?",
     "contact": "Contact",
     "returnAndExchanges": "Return and Exchanges"
+  },
+  "ShowAll": {
+    "noResultsFound.": "No results found.",
+    "viewAll": "View all",
+    "showingTheFirst": "Showing the first",
+    "results": "results."
+  },
+  "ControlledSearchBox": {
+    "cancel": "Cancel"
+  },
+  "SearchResultsTemplate": {
+    "clear": "Clear",
+    "noResults": "No results.",
+    "searchResultsFor": "Search results for:"
+  },
+  "SearchBox": {
+    "searchProducts": "Search products..."
+  },
+  "ProductTabs": {
+    "productInformation": "Product Information",
+    "shippingAndReturns": "Shipping & Returns"
+  },
+  "ProductInfoTab": {
+    "material": "Material",
+    "countryOfOrigin": "Country of origin",
+    "type": "Type",
+    "weight": "Weight",
+    "dimensions": "Dimensions"
+  },
+  "ShippingInfoTab": {
+    "fastDelivery": "Fast delivery",
+    "fastDeliveryDescription": "Your package will arrive in 3-5 business days at your pick up location or in the comfort of your home.",
+    "simpleExchanges": "Simple exchanges",
+    "simpleExchangesDescription": "Is the fit not quite right? No worries - we'll exchange your product for a new one.",
+    "easyReturns": "Easy returns",
+    "easyReturnsDescription": "Just return your product and we'll refund your money. No questions asked."
   }
 }

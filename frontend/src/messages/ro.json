@@ -227,5 +227,41 @@
     "needHelp": "Ai nevoie de ajutor?",
     "contact": "Contactează-ne",
     "returnAndExchanges": "Returnări și schimburi"
+  },
+  "ShowAll": {
+    "noResultsFound.": "Nu s-au găsit rezultate.",
+    "viewAll.": "Vezi toate",
+    "showingTheFirst": "Arătând primele",
+    "results": "rezultate."
+  },
+  "ControlledSearchBox": {
+    "cancel": "Anulează"
+  },
+  "SearchResultsTemplate": {
+    "clear": "Curăță",
+    "noResults": "No results.",
+    "searchResultsFor": "Rezultatele căutării pentru:"
+  },
+  "SearchBox": {
+    "searchProducts": "Caută produse..."
+  },
+  "ProductTabs": {
+    "productInformation": "Informații despre produs",
+    "shippingAndReturns": "Livrare și returnări"
+  },
+  "ProductInfoTab": {
+    "material": "Material",
+    "countryOfOrigin": "Țara de origine",
+    "type": "Tip",
+    "weight": "Greutate",
+    "dimensions": "Dimensiuni"
+  },
+  "ShippingInfoTab": {
+    "fastDelivery": "Livrare rapidă",
+    "fastDeliveryDescription": "Pachetul tău va ajunge în termen de 3-5 zile lucrătoare la punctul tău de ridicare sau comod acasă.",
+    "simpleExchanges": "Schimburi simple",
+    "simpleExchangesDescription": "Nu se potrivește? Nu-ți face griji - vom schimba produsul tău cu unul nou.",
+    "easyReturns": "Returnări ușoare",
+    "easyReturnsDescription": "Pur și simplu returnează produsul tău și îți vom returna banii. Fără întrebări."
   }
 }
