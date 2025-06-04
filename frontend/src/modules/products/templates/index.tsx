@@ -14,7 +14,7 @@ import { HttpTypes } from "@medusajs/types"
 type ProductTemplateProps = {
   product: HttpTypes.StoreProduct
   region: HttpTypes.StoreRegion
-  countryCode: string,
+  countryCode: string
   dict: any
 }
 
@@ -27,7 +27,6 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   if (!product || !product.id) {
     return notFound()
   }
-
   return (
     <>
       <div
@@ -36,7 +35,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
       >
         <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-6">
           <ProductInfo product={product} />
-          <ProductTabs product={product} />
+          <ProductTabs product={product} dict={dict} />
         </div>
         <div className="block w-full relative">
           <ImageGallery images={product?.images || []} />
@@ -53,7 +52,11 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
               />
             }
           >
-            <ProductActionsWrapper id={product.id} region={region} dict={dict}/>
+            <ProductActionsWrapper
+              id={product.id}
+              region={region}
+              dict={dict}
+            />
           </Suspense>
         </div>
       </div>
