@@ -7,6 +7,8 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 import { getAuthHeaders, getCacheOptions } from "./cookies"
 import { getRegion, retrieveRegion } from "./regions"
 
+const ALL_PRODUCT_LIMIT = 10000;
+
 export const listProducts = async ({
   pageParam = 1,
   queryParams,
@@ -120,7 +122,7 @@ export const listProductsWithSort = async ({
   nextPage: number | null
   queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams
 }> => {
-  const limit = queryParams?.limit || 12
+  const limit = queryParams?.limit || 16
 
   const {
     response: { products, count },
@@ -128,7 +130,7 @@ export const listProductsWithSort = async ({
     pageParam: 0,
     queryParams: {
       ...queryParams,
-      limit: 100,
+      limit: ALL_PRODUCT_LIMIT,
     },
     countryCode,
   })
@@ -139,6 +141,7 @@ export const listProductsWithSort = async ({
 
   const nextPage = count > pageParam + limit ? pageParam + limit : null
 
+  console.log('PAGE PARAM:', pageParam, 'LIMIT:', limit, 'COUNT:', sortedProducts.length)
   const paginatedProducts = sortedProducts.slice(pageParam, pageParam + limit)
 
   return {
