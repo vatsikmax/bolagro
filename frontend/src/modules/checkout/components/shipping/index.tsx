@@ -202,6 +202,7 @@ const Shipping: React.FC<ShippingProps> = ({
                     onSelect={(town: string, warehouse: string) => {
                       handleNovaPoshtaSelection(town, warehouse)
                     }}
+                    dict={dict}
                   />
                 )}
               </>
@@ -224,8 +225,7 @@ const Shipping: React.FC<ShippingProps> = ({
             }
             data-testid="submit-delivery-option-button"
           >
-            {dict.Shipping.continueToPayment +
-              JSON.stringify(cart.shipping_methods)}
+            {dict.Shipping.continueToPayment}
           </Button>
         </div>
       ) : (

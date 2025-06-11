@@ -263,5 +263,9 @@
     "simpleExchangesDescription": "Nu se potrivește? Nu-ți face griji - vom schimba produsul tău cu unul nou.",
     "easyReturns": "Returnări ușoare",
     "easyReturnsDescription": "Pur și simplu returnează produsul tău și îți vom returna banii. Fără întrebări."
+  },
+  "NovaPoshtaForm": {
+    "selectTown": "Selectează orașul",
+    "selectWarehouse": "Selectează depozitul"
   }
 }

@@ -4,8 +4,10 @@ import { useState } from "react"
 
 const NovaPoshtaForm = ({
   onSelect,
+  dict,
 }: {
   onSelect: (town: string, warehouse: string) => void
+  dict: any
 }) => {
   const [selectedTown, setSelectedTown] = useState<string>("")
 
@@ -24,7 +26,7 @@ const NovaPoshtaForm = ({
           htmlFor="town-select"
           className="block mb-2 text-sm font-medium text-gray-700"
         >
-          Select your town
+          {dict.NovaPoshtaForm.selectTown}
         </label>
         <input
           type="text"
@@ -83,7 +85,7 @@ const NovaPoshtaForm = ({
             htmlFor="warehouse-select"
             className="block mb-2 text-sm font-medium text-gray-700"
           >
-            Select your warehouse
+            {dict.NovaPoshtaForm.selectWarehouse}
           </label>
           <input
             type="text"
