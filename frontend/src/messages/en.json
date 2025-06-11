@@ -263,5 +263,9 @@
     "simpleExchangesDescription": "Is the fit not quite right? No worries - we'll exchange your product for a new one.",
     "easyReturns": "Easy returns",
     "easyReturnsDescription": "Just return your product and we'll refund your money. No questions asked."
+  },
+  "NovaPoshtaForm": {
+    "selectTown": "Select town",
+    "selectWarehouse": "Select your warehouse"
   }
 }

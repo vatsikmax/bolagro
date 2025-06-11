@@ -263,5 +263,9 @@
     "simpleExchangesDescription": "Не підходить? Не хвилюйтеся - ми обміняємо ваш товар на новий.",
     "easyReturns": "Легкі повернення",
     "easyReturnsDescription": "Просто поверніть свій товар, і ми повернемо ваші гроші. Без питань."
+  },
+  "NovaPoshtaForm": {
+    "selectTown": "Виберіть населений пункт",
+    "selectWarehouse": "Виберіть пункт видачі"
   }
 }
