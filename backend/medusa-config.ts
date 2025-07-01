@@ -1,6 +1,5 @@
 import { loadEnv, defineConfig } from '@medusajs/framework/utils'
 
-
 const orderPlacedHtmlTemplate = `<html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -152,6 +151,20 @@ module.exports = defineConfig({
               },
               // Add more templates as needed
             }
+          },
+        },
+      ],
+    },
+  },
+  {
+    resolve: "@medusajs/medusa/payment",
+    options: {
+      providers: [
+        {
+          resolve: "./src/modules/liqpay",
+          id: "liqpay",
+          options: {
+            privateKey: process.env.LIQPAY_PRIVATE_KEY,
           },
         },
       ],

@@ -83,7 +83,9 @@ export default async function seedDemoData({ container }: ExecArgs) {
           name: "Ukraine",
           currency_code: "uah",
           countries,
-          payment_providers: ["pp_system_default"],
+          payment_providers: ["pp_system_default"].concat(
+            process.env.LIQPAY_PRIVATE_KEY ? ["pp_liqpay"] : []
+          ),
         },
       ],
     },
