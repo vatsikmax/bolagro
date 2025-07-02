@@ -113,7 +113,9 @@
     "payment": "Plată",
     "edit": "Editează",
     "paymentMethod": "Metodă de plată",
-    "paymentDetails": "Detalii de plată"
+    "paymentDetails": "Detalii de plată",
+    "enterCardDetails": "Introdu detaliile cardului",
+    "continueToReview": "Continuă la revizuire"
   },
   "NotFound": {
     "pageNotFound": "Pagina nu a fost găsită",

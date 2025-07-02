@@ -24,7 +24,6 @@ export default async function OrderCompletedTemplate({
   const dict = await getDictionary(lang as any)
 
   const isOnboarding = cookies.get("_medusa_onboarding")?.value === "true"
-
   return (
     <div className="py-6 min-h-[calc(100vh-64px)]">
       <div className="content-container flex flex-col justify-center items-center gap-y-10 max-w-4xl h-full w-full">
@@ -50,7 +49,7 @@ export default async function OrderCompletedTemplate({
           <CartTotals totals={order} dict={dict} />
           <ShippingDetails order={order} dict={dict} />
           <PaymentDetails order={order} dict={dict} />
-          <Help dict={dict}/>
+          <Help dict={dict} />
         </div>
       </div>
     </div>
